@@ -1,3 +1,3 @@
 # Project Proposal
 
-![Project Proposal](Project_Proposal.pdf)
+![Project Proposal](Project_Proposal_Revised.pdf)
