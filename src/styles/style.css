@@ -12,3 +12,33 @@ body {
     min-height: 100vh;
     background: linear-gradient(#EEEEFF, #CBC7FF);
 }
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    background: #5350C4;
+    padding: 15px 22px;
+    justify-content: space-between;
+}
+
+.chat-header .header-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.header-info .chatbot-logo {
+    height: 35px;
+    width: 35px;
+    padding: 6px;
+    fill: #5350C4;
+    flex-shrink: 0;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.header-info .logo-text {
+    color: #fff;
+    font-size: 1.31rem;
+    font-weight: 600;
+}
