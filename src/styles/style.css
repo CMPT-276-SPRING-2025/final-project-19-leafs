@@ -52,6 +52,8 @@ body.show-chatbot #chatbot-toggler span:last-child {
     right: 35px;
     bottom: 90px;
     width: 420px;
+    height: 80vh;
+    max-height: 650px;
     background: #fff;
     overflow: hidden;
     border-radius: 15px;
@@ -122,7 +124,7 @@ body.show-chatbot .chatbot-popup {
     padding: 25px 22px;
     display: flex;
     gap: 20px;
-    height: 460px;
+    height: calc(100% - 170px);
     margin-bottom: 82px;
     overflow-y: auto;
     flex-direction: column;
@@ -241,4 +243,38 @@ body.show-chatbot .chatbot-popup {
 .chat-form .file-upload-wrapper :where(img, #file-cancel),
 .chat-form .file-upload-wrapper.file-uploaded #file-upload {
     display: none;
+}
+
+/* Responsive media query for mobile screens */
+@media (max-width: 520px) {
+    #chatbot-toggler {
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .chatbot-popup {
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        max-height: 100%; 
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .chatbot-popup .chat-header {
+        padding: 12px 15px;
+    }
+
+    .chat-body {
+        height: calc(100% - 140px);
+        padding: 25px 15px;
+    }
+
+    .chat-footer {
+        padding: 10px 15px 15px;
+    }
+
+    .chat-form .file-upload-wrapper.file-uploaded #file-cancel {
+        opacity: 0;
+    }
 }
