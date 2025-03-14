@@ -1,4 +1,5 @@
 const chatbotToggler = document.querySelector("#chatbot-toggler");
+const closeChatbot = document.querySelector("#close-chatbot");
 
 // Initialize emoji picker and handle emoji selection
 const picker = new EmojiMart.Picker({
