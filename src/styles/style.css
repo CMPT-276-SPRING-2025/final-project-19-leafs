@@ -151,6 +151,11 @@ body.show-chatbot .chatbot-popup {
     border-radius: 50%;
 }
 
+.chat-body .user-message {
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .chat-body .message .message-text {
     padding: 12px 16px;
     max-width: 75%;
@@ -160,6 +165,12 @@ body.show-chatbot .chatbot-popup {
 
 .chat-body .bot-message .message-text {
     background: #F2F2FF;
+    border-radius: 13px 13px 13px 3px;
+}
+
+.chat-body .user-message .message-text {
+    color: #fff;
+    background: #5350C4;
     border-radius: 13px 13px 13px 3px;
 }
 
