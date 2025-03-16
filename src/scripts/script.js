@@ -8,7 +8,7 @@ const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
 
 // API setup
-const API_KEY = "AIzaSyCIfTJ7HtkHNNKLcGLq3A-ik_aOZ2xtvco-";
+const API_KEY = "AIzaSyCIfTJ7HtkHNNKLcGLq3A-ik_aOZ2xtvco";
 const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 const userData = {
@@ -132,6 +132,12 @@ fileInput.addEventListener("change", () => {
     reader.readAsDataURL(file);
 })
 
+// Cancel file upload
+fileCancelButton.addEventListener("click", () => {
+    userData.file = { data: null, mime_type: null };
+    fileUploadWrapper.classList.remove("file-uploaded");
+});
+
 // Initialize emoji picker and handle emoji selection
 const picker = new EmojiMart.Picker({
     theme: "light",
@@ -154,5 +160,6 @@ const picker = new EmojiMart.Picker({
 document.querySelector(".chat-form").appendChild(picker);
 
 sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
+document.querySelector("#file-upload").addEventListener("click", () => fileInput.click());
 chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
 closeChatbot.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
