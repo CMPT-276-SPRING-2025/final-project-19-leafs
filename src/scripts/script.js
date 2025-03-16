@@ -5,7 +5,7 @@ const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
 
 // API setup
-const API_KEY = "AIzaSyCIfTJ7HtkHNNKLcGLq3A-ik_aOZ2xtvco";
+const API_KEY = "AIzaSyCIfTJ7HtkHNNKLcGLq3A-ik_aOZ2xtvco-";
 const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 const userData = {
@@ -41,10 +41,21 @@ const generateBotResponse = async (incomingMessageDiv) => {
         const data = await response.json();
         if (!response.ok) throw new Error(data.error.message);
 
+        // Extract and display bot's response text
+        const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*/g, "$1").trim();
+        messageElement.innerText = apiResponseText;
+
         console.log(data);
     } catch (error) {
         // Handle error in API response
         console.log(error);
+        messageElement.innerText = error.message;
+        messageElement.style.color = "#ff0000";
+    } finally {
+        // Reset user's file data, removing thinking indicator and scroll chat to bottom
+        userData.file = { data: null, mime_type: null };
+        incomingMessageDiv.classList.remove("thinking");
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" })
     }
 }
 
