@@ -20,12 +20,13 @@ const createMessageElement = (content, classes) => {
 const handleOutgoingMessage = (e) => {
     e.preventDefault();
     userData.message = messageInput.value.trim();
-
+    messageInput.value = "";
     
     // Create and display user message
-    const messageContent = `<div class="message-text">${userData.message}</div>`;
+    const messageContent = `<div class="message-text"></div>`;
 
     const outgoingMessageDiv = createMessageElement(messageContent, "user-message");
+    outgoingMessageDiv.querySelector(".message-text").innerText = userData.message;
     chatBody.appendChild(outgoingMessageDiv);
 }
 
