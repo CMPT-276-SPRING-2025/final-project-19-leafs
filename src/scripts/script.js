@@ -1,7 +1,12 @@
 const chatBody = document.querySelector(".chat-body");
 const messageInput = document.querySelector(".message-input");
+const sendMessageButton = document.querySelector("#send-message");
 const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
+
+const userData = {
+    message: null
+}
 
 // Create message element with dynamic classes and return it
 const createMessageElement = (content, classes) => {
@@ -12,10 +17,13 @@ const createMessageElement = (content, classes) => {
 }
 
 // Handle outgoing user messages
-const handleOutgoingMessage = (userMessage) => {
+const handleOutgoingMessage = (e) => {
+    e.preventDefault();
+    userData.message = messageInput.value.trim();
+
     
     // Create and display user message
-    const messageContent = `<div class="message-text">${userMessage}</div>`;
+    const messageContent = `<div class="message-text">${userData.message}</div>`;
 
     const outgoingMessageDiv = createMessageElement(messageContent, "user-message");
     chatBody.appendChild(outgoingMessageDiv);
@@ -25,7 +33,7 @@ const handleOutgoingMessage = (userMessage) => {
 messageInput.addEventListener("keydown", (e) => {
     const userMessage = e.target.value.trim();
     if (e.key === "Enter" && userMessage) {
-        handleOutgoingMessage(userMessage);
+        handleOutgoingMessage(e);
     }
 });
 
@@ -50,5 +58,7 @@ const picker = new EmojiMart.Picker({
 });
 
 document.querySelector(".chat-form").appendChild(picker);
+
+sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
 chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
 closeChatbot.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
