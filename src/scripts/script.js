@@ -64,14 +64,14 @@ const handleOutgoingMessage = (e) => {
     e.preventDefault();
     userData.message = messageInput.value.trim();
     messageInput.value = "";
-    
+
     // Create and display user message
     const messageContent = `<div class="message-text"></div>`;
 
     const outgoingMessageDiv = createMessageElement(messageContent, "user-message");
     outgoingMessageDiv.querySelector(".message-text").innerText = userData.message;
     chatBody.appendChild(outgoingMessageDiv);
-
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
 
     // Simulate bot response with thinking indicator after a delay
     setTimeout(() => {
@@ -90,6 +90,7 @@ const handleOutgoingMessage = (e) => {
 
         const incomingMessageDiv = createMessageElement(messageContent, "bot-message", "thinking");
         chatBody.appendChild(incomingMessageDiv);
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
         generateBotResponse(incomingMessageDiv);
     }, 600);
 }
@@ -113,11 +114,10 @@ const picker = new EmojiMart.Picker({
         messageInput.focus();
     },
     onClickOutside: (e) => {
-        if(e.target.id === "emoji-picker") {
+        if (e.target.id === "emoji-picker") {
             document.body.classList.toggle("show-emoji-picker");
         } else {
             document.body.classList.remove("show-emoji-picker");
-
         }
     }
 });
