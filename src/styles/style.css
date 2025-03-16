@@ -35,7 +35,7 @@ body.show-chatbot #chatbot-toggler {
 
 #chatbot-toggler span {
     color: #fff;
-    position: absolute
+    position: absolute;
 }
 
 body.show-chatbot #chatbot-toggler span:first-child,
@@ -271,6 +271,7 @@ body.show-chatbot .chatbot-popup {
     align-items: center;
     align-self: flex-end;
     padding-right: 6px;
+    gap: 8px;
 }
 
 .chat-form .chat-controls button {
