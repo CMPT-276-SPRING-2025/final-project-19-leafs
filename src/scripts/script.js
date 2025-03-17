@@ -8,7 +8,7 @@ const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
 
 // API setup
-const API_KEY = "AIzaSyCIfTJ7HtkHNNKLcGLq3A-ik_aOZ2xtvco";
+const API_KEY = "AIzaSyCIfTJ7HtkHNNKLcGLq3A-ik_aOZ2xtvco";  // Navjot's
 const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 const userData = {
@@ -19,6 +19,7 @@ const userData = {
     }
 }
 
+const chatHistory = [];
 const initialInputHeight = messageInput.scrollHeight;
 
 
@@ -34,14 +35,18 @@ const createMessageElement = (content, ...classes) => {
 const generateBotResponse = async (incomingMessageDiv) => {
     const messageElement = incomingMessageDiv.querySelector(".message-text");
 
+    // Add user message response to chat history
+    chatHistory.push({
+        role: "user",
+        parts: [{ text: userData.message }, ...(userData.file.data ? [{ inline_data: userData.file }] : [])]
+    });
+
     // API request options
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            contents: [{
-                parts: [{ text: userData.message }, ...(userData.file.data ? [{ inline_data: userData.file }] : [])]
-            }]
+            contents: chatHistory
         })
     }
 
@@ -55,7 +60,11 @@ const generateBotResponse = async (incomingMessageDiv) => {
         const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*/g, "$1").trim();
         messageElement.innerText = apiResponseText;
 
-        console.log(data);
+        // Add bot response to chat history
+        chatHistory.push({
+            role: "model",
+            parts: [{ text: apiResponseText }]
+        });
     } catch (error) {
         // Handle error in API response
         console.log(error);
@@ -72,6 +81,7 @@ const generateBotResponse = async (incomingMessageDiv) => {
 // Handle outgoing user messages
 const handleOutgoingMessage = (e) => {
     e.preventDefault();
+
     userData.message = messageInput.value.trim();
     messageInput.value = "";
     fileUploadWrapper.classList.remove("file-uploaded");
@@ -111,7 +121,7 @@ const handleOutgoingMessage = (e) => {
 //Handle Enter key press for sending messages
 messageInput.addEventListener("keydown", (e) => {
     const userMessage = e.target.value.trim();
-    if (e.key === "Enter" && userMessage) {
+    if (e.key === "Enter" && userMessage && !e.shiftKey && window.innerWidth > 768) {
         handleOutgoingMessage(e);
     }
 });
