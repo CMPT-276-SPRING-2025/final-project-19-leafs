@@ -11,6 +11,14 @@ const closeChatbot = document.querySelector("#close-chatbot");
 const API_KEY = "AIzaSyCIfTJ7HtkHNNKLcGLq3A-ik_aOZ2xtvco";  // Navjot's
 const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
+// Custom system prompt configuration
+const SYSTEM_PROMPT = {
+    role: "model",
+    parts: [{
+        text: "You are a helpful AI assistant on our web application - 'SkyFare', named Alisa. Our app provide information about the flights like real time updates, finding flights with different options and save different flights. Users can book the flight from the flight website given provided in app. You provide clear, concise, and accurate information about the flights and users ma ask other information about their flights that you need to look up and and tell the users. You're friendly, respectful, and try to answer the user's questions about the flights to the best of your ability. If you don't know something, you'll admit it rather than making up information."
+    }]
+};
+
 const userData = {
     message: null,
     file: {
@@ -19,7 +27,8 @@ const userData = {
     }
 }
 
-const chatHistory = [];
+// Initialize chat history with system prompt
+const chatHistory = [SYSTEM_PROMPT];
 const initialInputHeight = messageInput.scrollHeight;
 
 
@@ -63,7 +72,7 @@ const generateBotResponse = async (incomingMessageDiv) => {
         // Add bot response to chat history
         chatHistory.push({
             role: "model",
-            parts: [{ text: apiResponseText }]
+            parts: [{ text: apiResponseText }] // Store actual response for context
         });
     } catch (error) {
         // Handle error in API response
