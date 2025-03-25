@@ -1,11 +1,6 @@
 # SkyFare
 ### A Flight Ticket Price Finder Web App
-
-## Group Members
-- Pal Rohit Tilva  
-- Kaiwen Tao  
-- Navjot Singh  
-- Karnpreet Cheema  
+ 
 
 ## GitHub Repository
 [Project Repository](https://github.com/CMPT-276-SPRING-2025/final-project-19-leafs)
