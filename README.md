@@ -1,4 +1,5 @@
 # SkyFare
+
 ### A Flight Ticket Price Finder Web App  
 
 ## GitHub Repository
