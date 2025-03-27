@@ -8,7 +8,7 @@ const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
 
 // API setup
-const API_KEY = "AIzaSyCIfTJ7HtkHNNKLcGLq3A-ik_aOZ2xtvco";  // Navjot's
+const API_KEY = "";  // Navjot's
 const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 // Custom system prompt configuration
