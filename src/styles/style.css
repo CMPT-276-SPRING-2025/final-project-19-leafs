@@ -459,3 +459,70 @@ body.show-emoji-picker em-emoji-picker {
     margin-bottom: 4px;
   }
   
+  .flight-card {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    padding: 16px;
+    margin: 12px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    align-items: center;
+  }
+  
+  .flight-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .airline-logo {
+    width: 60px;
+    height: auto;
+  }
+  
+  .flight-times {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  
+  .flight-arrow {
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .flight-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .price-tags {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .price-main {
+    font-size: 24px;
+    font-weight: bold;
+    color: green;
+  }
+  
+  .details-btn, .save-btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .details-btn {
+    background-color: #eee;
+  }
+  
+  .save-btn {
+    background-color: transparent;
+    font-size: 20px;
+  }
+  
