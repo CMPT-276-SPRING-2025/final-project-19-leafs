@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SkyFare – Page 2</title>
 
-  <link rel="stylesheet" href="styles/style.css"/>
+  <link rel="stylesheet" href="styles/style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded&display=swap" />
 </head>
 <body>
-
   <header class="top-bar">
     <button class="back-button">← Back to home</button>
-    <input type="text" placeholder="Search by Flight Number, Airport or City" class="search-bar"/>
+    <input type="text" placeholder="Search by Flight Number, Airport or City" class="search-bar" />
     <div class="profile-box">
-      <img src="images/avatar.png" alt="User" class="avatar"/>
+      <img src="images/avatar.png" alt="User" class="avatar" />
       <span class="profile-text">Username</span>
     </div>
   </header>
@@ -34,194 +34,119 @@
         <select><option>All</option><option>Air Canada</option><option>WestJet</option></select>
       </label>
     </aside>
-    
-  <section class="search-options">
-    <div class="search-row">
-      <input type="text" placeholder="From" class="search-input" />
-      <input type="text" placeholder="To" class="search-input" />
-      <input type="date" class="search-date" />
-      <input type="date" class="search-date" />
-      
-      <div class="passenger-box">
-        <label>Adult (18+)</label>
-        <div class="counter">
-          <button id="adult-minus" class="counter-btn">−</button>
-          <span id="adult-count">1</span>
-          <button id="adult-plus" class="counter-btn">+</button>
-        </div>
-      </div>
-      
-      <div class="passenger-box">
-        <label>Children (0–17)</label>
-        <div class="counter">
-          <button id="child-minus" class="counter-btn">−</button>
-          <span id="child-count">1</span>
-          <button id="child-plus" class="counter-btn">+</button>
-        </div>
-      </div>
-      
-      <section class="price-bar">
-        <div class="price-summary">
-          <span class="price-range">$000 - $000</span>
-          <div class="price-tags">
-            <span class="tag-green">$000</span>
-            <span class="tag-yellow">$000</span>
-            <span class="tag-red">$000</span>
+
+    <div class="main-content">
+      <section class="search-options">
+        <div class="search-row">
+          <input type="text" placeholder="From" class="search-input" />
+          <input type="text" placeholder="To" class="search-input" />
+          <input type="date" class="search-date" />
+          <input type="date" class="search-date" />
+          <div class="passenger-box">
+            <label>Adult (18+)</label>
+            <div class="counter">
+              <button id="adult-minus" class="counter-btn">−</button>
+              <span id="adult-count">1</span>
+              <button id="adult-plus" class="counter-btn">+</button>
+            </div>
           </div>
-        </div>
-      
-        <div class="price-box cheapest">
-          <span>Cheapest</span>
-          <span class="price-value">C$000</span>
-        </div>
-      
-        <div class="price-box fastest">
-          <span>Fastest</span>
-          <span class="price-value">C$000</span>
-        </div>
-      
-        <div class="price-box recommend">
-          <span>Recommend!</span>
-          <span class="thumb-icon">👍</span>
-          <span class="price-value">C$000</span>
+          <div class="passenger-box">
+            <label>Children (0–17)</label>
+            <div class="counter">
+              <button id="child-minus" class="counter-btn">−</button>
+              <span id="child-count">1</span>
+              <button id="child-plus" class="counter-btn">+</button>
+            </div>
+          </div>
         </div>
       </section>
-      
-    <section class="result-area">
-      <div class="flight-card">
-        <div class="flight-info">
-          <img src="images/westjet.png" alt="Airline Logo" class="airline-logo" />
-          <div class="flight-times">
-            <div>
-              <strong>00:00 AM</strong>
-              <p>YVR</p>
-            </div>
-            <div class="flight-arrow">
-              <p>Flight Hours : 0h 00</p>
-              <p>Direct</p>
-            </div>
-            <div>
-              <strong>00:00 AM</strong>
-              <p>YYZ</p>
-            </div>
+
+      <section class="price-bar">
+        <div class="price-info">
+          <div class="price-range">
+            <span class="green">$000</span>
+            <span class="yellow">$000</span>
+            <span class="red">$000</span>
+          </div>
+          <div class="best-price">
+            <div><strong>Cheapest</strong><br><span class="green">C$000</span></div>
+            <div><strong>Fastest</strong><br><span class="yellow">C$000</span></div>
+            <div><strong>Recommend!</strong><br><span class="green">👍 C$000</span></div>
           </div>
         </div>
-      
-        <div class="flight-right">
-          <div class="price-tags">
-            <span class="tag-green">$000</span>
-            <span class="tag-yellow">$000</span>
-            <span class="tag-red">$000</span>
+      </section>
+
+      <section class="result-area">
+        <div class="flight-card">
+          <div class="flight-info">
+            <img src="images/logo.png" alt="Airline Logo" class="airline-logo" />
+            <div class="flight-time">
+              <strong>00:00 AM</strong><br />YVR
+            </div>
+            <div class="flight-middle">
+              <span>Flight Hours : 0h 00</span><br />Direct
+            </div>
+            <div class="flight-time">
+              <strong>00:00 AM</strong><br />YYZ
+            </div>
           </div>
-          <div class="price-main">C$000</div>
-          <div class="action-buttons">
+          <div class="flight-price">
+            <div class="price-tags">
+              <span class="green">$000</span>
+              <span class="yellow">$000</span>
+              <span class="red">$000</span>
+            </div>
+            <div class="main-price">C$000</div>
             <button class="details-btn">🔍 Details</button>
-            <button class="save-btn">🤍</button>
+            <button class="favorite-btn">🤍</button>
           </div>
         </div>
-      </div>
-      <div class="flight-card">
-        <div class="flight-info">
-          <img src="images/westjet.png" alt="Airline Logo" class="airline-logo" />
-          <div class="flight-times">
-            <div>
-              <strong>00:00 AM</strong>
-              <p>YVR</p>
-            </div>
-            <div class="flight-arrow">
-              <p>Flight Hours : 0h 00</p>
-              <p>Direct</p>
-            </div>
-            <div>
-              <strong>00:00 AM</strong>
-              <p>YYZ</p>
-            </div>
-          </div>
-        </div>
-      
-        <div class="flight-right">
-          <div class="price-tags">
-            <span class="tag-green">$000</span>
-            <span class="tag-yellow">$000</span>
-            <span class="tag-red">$000</span>
-          </div>
-          <div class="price-main">C$000</div>
-          <div class="action-buttons">
-            <button class="details-btn">🔍 Details</button>
-            <button class="save-btn">🤍</button>
-          </div>
-        </div>
-      </div>
-      <div class="flight-card">
-        <div class="flight-info">
-          <img src="images/westjet.png" alt="Airline Logo" class="airline-logo" />
-          <div class="flight-times">
-            <div>
-              <strong>00:00 AM</strong>
-              <p>YVR</p>
-            </div>
-            <div class="flight-arrow">
-              <p>Flight Hours : 0h 00</p>
-              <p>Direct</p>
-            </div>
-            <div>
-              <strong>00:00 AM</strong>
-              <p>YYZ</p>
-            </div>
-          </div>
-        </div>
-      
-        <div class="flight-right">
-          <div class="price-tags">
-            <span class="tag-green">$000</span>
-            <span class="tag-yellow">$000</span>
-            <span class="tag-red">$000</span>
-          </div>
-          <div class="price-main">C$000</div>
-          <div class="action-buttons">
-            <button class="details-btn">🔍 Details</button>
-            <button class="save-btn">🤍</button>
-          </div>
-        </div>
-      </div>
-      
-    </section>
+
+        <!-- Copy the card 2 more times -->
+        <div class="flight-card">...（重复结构）</div>
+        <div class="flight-card">...（重复结构）</div>
+      </section>
+    </div>
   </main>
-  <script>
-    const adultCount = document.getElementById("adult-count");
-    const adultPlus = document.getElementById("adult-plus");
-    const adultMinus = document.getElementById("adult-minus");
-    let adultNum = 1;
-  
-    adultPlus.addEventListener("click", () => {
-      adultNum++;
-      adultCount.textContent = adultNum;
-    });
-  
-    adultMinus.addEventListener("click", () => {
-      if (adultNum > 0) {
-        adultNum--;
-        adultCount.textContent = adultNum;
-      }
-    });
-  
-    const childCount = document.getElementById("child-count");
-    const childPlus = document.getElementById("child-plus");
-    const childMinus = document.getElementById("child-minus");
-    let childNum = 1;
-  
-    childPlus.addEventListener("click", () => {
-      childNum++;
-      childCount.textContent = childNum;
-    });
-  
-    childMinus.addEventListener("click", () => {
-      if (childNum > 0) {
-        childNum--;
-        childCount.textContent = childNum;
-      }
-    });
-  </script>
-  
+
+  <!-- Chatbot Toggle Button -->
+  <button id="chatbot-toggler">
+    <span class="material-symbols-rounded">mode_comment</span>
+    <span class="material-symbols-rounded">close</span>
+  </button>
+
+  <!-- Chatbot Popup -->
+  <div class="chatbot-popup">
+    <div class="chat-header">
+      <div class="header-info">
+        <svg class="chatbot-logo" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
+          <path d="..."></path>
+        </svg>
+        <h2 class="logo-text">Chatbot</h2>
+      </div>
+      <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_down</button>
+    </div>
+    <div class="chat-body">
+      <div class="message bot-message">
+        <svg class="bot-avatar" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
+          <path d="..."></path>
+        </svg>
+        <div class="message-text">Hey there 👋 <br /> How can I help you today?</div>
+      </div>
+    </div>
+    <div class="chat-footer">
+      <form class="chat-form">
+        <textarea placeholder="Message..." class="message-input" required></textarea>
+        <div class="chat-controls">
+          <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
+          <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+  <script src="scripts/script.js"></script>
 </body>
 </html>
