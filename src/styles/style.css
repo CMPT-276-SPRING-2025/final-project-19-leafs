@@ -223,3 +223,20 @@
     color: #ccc;
     cursor: pointer;
   }
+  
+  /* Chatbot button */
+  #chatbot-toggler {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1f77f0;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    font-size: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 99;
+  }
+  
