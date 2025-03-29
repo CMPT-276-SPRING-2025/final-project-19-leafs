@@ -15,6 +15,149 @@
 </head>
 
 <body>
+    <header class="top-bar">
+        <button class="back-button">← Back to home</button>
+        <input type="text" placeholder="Search by Flight Number, Airport or City" class="search-bar" />
+        <div class="profile-box">
+          <img src="images/avatar.png" alt="User" class="avatar" />
+          <span class="profile-text">Username</span>
+        </div>
+      </header>
+    
+      <main class="page-container">
+        <aside class="filter-sidebar">
+          <label>Trip Type
+            <select><option>One Way</option><option>Round Trip</option></select>
+          </label>
+          <label>Class
+            <select><option>Economy</option><option>Business</option></select>
+          </label>
+          <label>Stops
+            <select><option>Direct</option><option>1 Stop</option></select>
+          </label>
+          <label>Airlines
+            <select><option>All</option><option>Air Canada</option><option>WestJet</option></select>
+          </label>
+        </aside>
+    
+        <div class="main-content">
+          <section class="search-options">
+            <div class="search-row">
+              <input type="text" placeholder="From" class="search-input" />
+              <input type="text" placeholder="To" class="search-input" />
+              <input type="date" class="search-date" />
+              <input type="date" class="search-date" />
+              <div class="passenger-box">
+                <label>Adult (18+)</label>
+                <div class="counter">
+                  <button id="adult-minus" class="counter-btn">−</button>
+                  <span id="adult-count">1</span>
+                  <button id="adult-plus" class="counter-btn">+</button>
+                </div>
+              </div>
+              <div class="passenger-box">
+                <label>Children (0–17)</label>
+                <div class="counter">
+                  <button id="child-minus" class="counter-btn">−</button>
+                  <span id="child-count">1</span>
+                  <button id="child-plus" class="counter-btn">+</button>
+                </div>
+              </div>
+            </div>
+          </section>
+    
+          <section class="price-bar">
+            <div class="price-info">
+              <div class="price-range">
+                <span class="green">$000</span>
+                <span class="yellow">$000</span>
+                <span class="red">$000</span>
+              </div>
+              <div class="best-price">
+                <div><strong>Cheapest</strong><br><span class="green">C$000</span></div>
+                <div><strong>Fastest</strong><br><span class="yellow">C$000</span></div>
+                <div><strong>Recommend!</strong><br><span class="green">👍 C$000</span></div>
+              </div>
+            </div>
+          </section>
+    
+          <section class="result-area">
+            <div class="flight-card">
+              <div class="flight-info">
+                <img src="images/logo.png" alt="Airline Logo" class="airline-logo" />
+                <div class="flight-time">
+                  <strong>00:00 AM</strong><br />YVR
+                </div>
+                <div class="flight-middle">
+                  <span>Flight Hours : 0h 00</span><br />Direct
+                </div>
+                <div class="flight-time">
+                  <strong>00:00 AM</strong><br />YYZ
+                </div>
+              </div>
+              <div class="flight-price">
+                <div class="price-tags">
+                  <span class="green">$000</span>
+                  <span class="yellow">$000</span>
+                  <span class="red">$000</span>
+                </div>
+                <div class="main-price">C$000</div>
+                <button class="details-btn">🔍 Details</button>
+                <button class="favorite-btn">🤍</button>
+              </div>
+            </div>
+    
+            <div class="flight-card">
+              <div class="flight-info">
+                <img src="images/logo.png" alt="Airline Logo" class="airline-logo" />
+                <div class="flight-time">
+                  <strong>00:00 AM</strong><br />YVR
+                </div>
+                <div class="flight-middle">
+                  <span>Flight Hours : 0h 00</span><br />Direct
+                </div>
+                <div class="flight-time">
+                  <strong>00:00 AM</strong><br />YYZ
+                </div>
+              </div>
+              <div class="flight-price">
+                <div class="price-tags">
+                  <span class="green">$000</span>
+                  <span class="yellow">$000</span>
+                  <span class="red">$000</span>
+                </div>
+                <div class="main-price">C$000</div>
+                <button class="details-btn">🔍 Details</button>
+                <button class="favorite-btn">🤍</button>
+              </div>
+            </div>
+            <div class="flight-card">
+              <div class="flight-info">
+                <img src="images/logo.png" alt="Airline Logo" class="airline-logo" />
+                <div class="flight-time">
+                  <strong>00:00 AM</strong><br />YVR
+                </div>
+                <div class="flight-middle">
+                  <span>Flight Hours : 0h 00</span><br />Direct
+                </div>
+                <div class="flight-time">
+                  <strong>00:00 AM</strong><br />YYZ
+                </div>
+              </div>
+              <div class="flight-price">
+                <div class="price-tags">
+                  <span class="green">$000</span>
+                  <span class="yellow">$000</span>
+                  <span class="red">$000</span>
+                </div>
+                <div class="main-price">C$000</div>
+                <button class="details-btn">🔍 Details</button>
+                <button class="favorite-btn">🤍</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
     <button id="chatbot-toggler">
         <span class="material-symbols-rounded">mode_comment</span>
         <span class="material-symbols-rounded">close</span>
@@ -74,5 +217,4 @@
     <script src="/src/scripts/script.js"></script>
 
 </body>
-
 </html>
