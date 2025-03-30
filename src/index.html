@@ -17,11 +17,16 @@
 <body>
     <header class="top-bar">
         <button class="back-button">← Back to home</button>
-        <input type="text" placeholder="Search by Flight Number, Airport or City" class="search-bar" />
-        <div button class="profile-box">
-          <img src="images/avatar.png" alt="User" class="avatar" />
-          <span class="profile-text">Username</span>
+        <div class="search-container">
+          <input type="text" placeholder="Search by Flight Number, Airport or City" class="search-bar" />
         </div>
+        <a href="saved.html" class="profile-box">
+          <img src="images/avatar.png" alt="User" class="avatar" />
+          <div class="profile-text">
+            <div class="username">Username</div>
+            <div class="subtext">Click to checkout your saved flight</div>
+          </div>
+        </a>
       </header>
     
       <main class="page-container">
