@@ -9,6 +9,7 @@
 }
 
 body {
+  font-size: 16px;
   min-height: 100vh;
   background: linear-gradient(#EEEEFF, #CBC7FF);
   color: #222;
@@ -141,13 +142,67 @@ body {
 }
 
 .price-bar {
-  background: #fff;
-  border-radius: 8px;
+  background: white;
+  border-radius: 12px;
   padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
 }
+
+.price-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.price-range {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price-range .green,
+.price-range .yellow,
+.price-range .red {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+}
+
+.price-range .green { background-color: #00cc66; }
+.price-range .yellow { background-color: #ffcc00; }
+.price-range .red { background-color: #ff4444; }
+
+.best-price {
+  display: flex;
+  gap: 2rem;
+  text-align: center;
+  flex: 1;
+  justify-content: space-around;
+}
+
+.best-price div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.best-price span {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.best-price .green,
+.best-price .yellow,
+.best-price .icon {
+  color: #ffffff; 
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
 
 .price-range span {
   padding: 0.25rem 0.5rem;
@@ -606,3 +661,4 @@ body.show-emoji-picker em-emoji-picker {
     opacity: 0;
   }
 }
+

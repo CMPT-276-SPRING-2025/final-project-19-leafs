@@ -1,10 +1,10 @@
+<!-- Updated HTML with better card design + arrow + price labels -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SkyFare – Page 2</title>
-
   <link rel="stylesheet" href="styles/style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded&display=swap" />
@@ -64,14 +64,14 @@
       <section class="price-bar">
         <div class="price-info">
           <div class="price-range">
-            <span class="green">$000</span>
-            <span class="yellow">$000</span>
-            <span class="red">$000</span>
+            <span class="green">$120</span>
+            <span class="yellow">$180</span>
+            <span class="red">$250</span>
           </div>
           <div class="best-price">
-            <div><strong>Cheapest</strong><br><span class="green">C$000</span></div>
-            <div><strong>Fastest</strong><br><span class="yellow">C$000</span></div>
-            <div><strong>Recommend!</strong><br><span class="green">👍 C$000</span></div>
+            <div><strong>Cheapest</strong><br><span class="green">C$120</span></div>
+            <div><strong>Fastest</strong><br><span class="yellow">C$180</span></div>
+            <div><strong>Recommend!</strong><br><span class="green">👍 C$150</span></div>
           </div>
         </div>
       </section>
@@ -81,84 +81,38 @@
           <div class="flight-info">
             <img src="images/logo.png" alt="Airline Logo" class="airline-logo" />
             <div class="flight-time">
-              <strong>00:00 AM</strong><br />YVR
+              <strong>07:30 AM</strong><br />YVR
             </div>
             <div class="flight-middle">
-              <span>Flight Hours : 0h 00</span><br />Direct
+              <span>4h 30m</span><br />
+              <span class="material-symbols-rounded">arrow_forward</span><br />Direct
             </div>
             <div class="flight-time">
-              <strong>00:00 AM</strong><br />YYZ
+              <strong>12:00 PM</strong><br />YYZ
             </div>
           </div>
           <div class="flight-price">
             <div class="price-tags">
-              <span class="green">$000</span>
-              <span class="yellow">$000</span>
-              <span class="red">$000</span>
+              <span class="green">$120</span>
+              <span class="yellow">$180</span>
+              <span class="red">$250</span>
             </div>
-            <div class="main-price">C$000</div>
+            <div class="main-price">C$150</div>
             <button class="details-btn">🔍 Details</button>
-            <button class="favorite-btn">🤍</button>
-          </div>
-        </div>
-
-        <div class="flight-card">
-          <div class="flight-info">
-            <img src="images/logo.png" alt="Airline Logo" class="airline-logo" />
-            <div class="flight-time">
-              <strong>00:00 AM</strong><br />YVR
-            </div>
-            <div class="flight-middle">
-              <span>Flight Hours : 0h 00</span><br />Direct
-            </div>
-            <div class="flight-time">
-              <strong>00:00 AM</strong><br />YYZ
-            </div>
-          </div>
-          <div class="flight-price">
-            <div class="price-tags">
-              <span class="green">$000</span>
-              <span class="yellow">$000</span>
-              <span class="red">$000</span>
-            </div>
-            <div class="main-price">C$000</div>
-            <button class="details-btn">🔍 Details</button>
-            <button class="favorite-btn">🤍</button>
-          </div>
-        </div>
-        <div class="flight-card">
-          <div class="flight-info">
-            <img src="images/logo.png" alt="Airline Logo" class="airline-logo" />
-            <div class="flight-time">
-              <strong>00:00 AM</strong><br />YVR
-            </div>
-            <div class="flight-middle">
-              <span>Flight Hours : 0h 00</span><br />Direct
-            </div>
-            <div class="flight-time">
-              <strong>00:00 AM</strong><br />YYZ
-            </div>
-          </div>
-          <div class="flight-price">
-            <div class="price-tags">
-              <span class="green">$000</span>
-              <span class="yellow">$000</span>
-              <span class="red">$000</span>
-            </div>
-            <div class="main-price">C$000</div>
-            <button class="details-btn">🔍 Details</button>
-            <button class="favorite-btn">🤍</button>
+            <button class="favorite-btn">❤️</button>
           </div>
         </div>
       </section>
     </div>
   </main>
 
+  <!-- Chatbot Toggle Button -->
   <button id="chatbot-toggler">
     <span class="material-symbols-rounded">mode_comment</span>
     <span class="material-symbols-rounded">close</span>
   </button>
 
+  <!-- Chatbot Popup -->
   <div class="chatbot-popup">
     <div class="chat-header">
       <div class="header-info">
@@ -188,6 +142,7 @@
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
   <script src="scripts/script.js"></script>
 </body>
