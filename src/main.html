@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="flight-booking">
+        <!-- Background Image -->
+        <div class="background-image"></div>
+        
+        <!-- Header -->
+        <header class="header">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="Search by Flight Number, Airport or City">
+            </div>
+            
+            <div class="user-profile" style="cursor: pointer;" title="View saved flights">
+                <div class="avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="username">Username</div>
+                    <div class="user-message">Click to checkout your saved flight</div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Card Container for Form -->
+            <div class="form-card">
+                <!-- From/To Section -->
+                <div class="location-section">
+                    <div class="from-section">
+                        <label for="from">From</label>
+                        <input type="text" id="from" placeholder="Airport or City">
+                    </div>
+                    
+                    <div class="swap-button" onclick="swapLocations()">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    </div>
+                    
+                    <div class="to-section">
+                        <label for="to">To</label>
+                        <input type="text" id="to" placeholder="Airport or City">
+                    </div>
+                </div>
+                
+                <!-- Trip Details Section -->
+                <div class="trip-details">
+                    <div class="trip-type">
+                        <label for="trip-type">Trip Type</label>
+                        <div class="select-wrapper">
+                            <select id="trip-type">
+                                <option value="" selected disabled>Select</option>
+                                <option value="round-trip">Round Trip</option>
+                                <option value="one-way">One Way</option>
+                                <option value="multi-city">Multi-City</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="class">
+                        <label for="class">Class</label>
+                        <div class="select-wrapper">
+                            <select id="class">
+                                <option value="" selected disabled>Select</option>
+                                <option value="economy">Economy</option>
+                                <option value="premium-economy">Premium Economy</option>
+                                <option value="business">Business</option>
+                                <option value="first">First Class</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="passengers">
+                        <label>Passengers</label>
+                        <div class="passenger-types">
+                            <div class="passenger-row">
+                                <span>Adult (18+)</span>
+                                <div class="counter">
+                                    <button class="decrement" onclick="decrementCount('adult-count')">−</button>
+                                    <span id="adult-count" class="count">0</span>
+                                    <button class="increment" onclick="incrementCount('adult-count')">+</button>
+                                </div>
+                            </div>
+                            <div class="passenger-row">
+                                <span>Children (0-17)</span>
+                                <div class="counter">
+                                    <button class="decrement" onclick="decrementCount('children-count')">−</button>
+                                    <span id="children-count" class="count">0</span>
+                                    <button class="increment" onclick="incrementCount('children-count')">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="departure-date">
+                        <label for="departure">Departure Date</label>
+                        <div class="date-input">
+                            <input type="text" id="departure" placeholder="MM/DD/YYYY">
+                            <i class="fa-regular fa-calendar"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="return-date">
+                        <label for="return">Return Date</label>
+                        <div class="date-input">
+                            <input type="text" id="return" placeholder="MM/DD/YYYY">
+                            <i class="fa-regular fa-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Search Button -->
+                <div class="search-button-container">
+                    <button class="search-button">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Search
+                    </button>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Chat Box -->
+        <div class="chat-box">
+            <button>
+                <i class="fa-solid fa-user"></i>
+                ChatBox
+            </button>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="scripts/main.js"></script>
+    <script>
+    // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                // Redirect to login page if not logged in
+                window.location.href = 'login.html';
+            } else {
+                // Update username in the header
+                const usernameElement = document.querySelector('.username');
+                if (usernameElement) {
+                    usernameElement.textContent = currentUser.username;
+                }
+            }
+        });</script>
+</body>
+</html>
