@@ -1,6 +1,4 @@
-// API key and secret
-const API_KEY = ''; // Replace with your actual API key
-const API_SECRET = ''; // Replace with your actual API secret
+import config from '../../config.js';
 
 // Function to swap the From and To locations
 function swapLocations() {
@@ -51,129 +49,73 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// API Logic
-document.addEventListener('DOMContentLoaded', function () {
-    const searchButton = document.querySelector('.search-button');
+async function getAccessToken() {
+    const AMADEUS_API_KEY = config.AMADEUS_API_KEY; // Replace with your API Key
+    const AMADEUS_API_SECRET = config.AMADEUS_API_SECRET; // Replace with your API Secret
+    const authUrl = "https://test.api.amadeus.com/v1/security/oauth2/token";
 
-    if (searchButton) {
-        searchButton.addEventListener('click', async function () {
-            // Collect user inputs
-            const origin = document.getElementById('from').value;
-            const destination = document.getElementById('to').value;
-            const departureDate = document.getElementById('departure').value;
-            const returnDate = document.getElementById('return').value;
-            const adults = parseInt(document.getElementById('adult-count').textContent, 10);
-            const children = parseInt(document.getElementById('children-count').textContent, 10);
-            const travelClass = document.getElementById('class').value.toUpperCase(); // Convert to uppercase for API
+    const response = await fetch(authUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({
+            grant_type: "client_credentials",
+            client_id: AMADEUS_API_KEY,
+            client_secret: AMADEUS_API_SECRET
+        })
+    });
 
-            // Validate inputs
-            if (!origin || !destination || !departureDate || !adults) {
-                alert('Please fill in all required fields.');
-                return;
-            }
+    const data = await response.json();
+    return data.access_token; // Return the token for further API calls
+}
 
-            // Construct query parameters for GET request
-            const queryParams = new URLSearchParams({
-                originLocationCode: origin,
-                destinationLocationCode: destination,
-                departureDate: departureDate,
-                returnDate: returnDate || undefined, // Include only if returnDate is provided
-                adults: adults,
-                children: children || 0, // Default to 0 if not specified
-                travelClass: travelClass || undefined, // Include only if travelClass is provided
-                currencyCode: 'USD', // Default currency
-                max: 10, // Limit the number of flight offers
-            });
+async function getFlightOffers() {
+    const accessToken = await getAccessToken(); // Get token first
+    const flightOffersUrl = "https://test.api.amadeus.com/v2/shopping/flight-offers";
 
-            // Construct request body for POST request
-            const requestBody = {
-                currencyCode: 'USD',
-                originDestinations: [
-                    {
-                        id: '1',
-                        originLocationCode: origin,
-                        destinationLocationCode: destination,
-                        departureDateTimeRange: {
-                            date: departureDate,
-                            time: '10:00:00',
-                        },
-                    },
-                ],
-                travelers: [
-                    {
-                        id: '1',
-                        travelerType: 'ADULT',
-                    },
-                ],
-                sources: ['GDS'],
-                searchCriteria: {
-                    maxFlightOffers: 5,
-                    flightFilters: {
-                        cabinRestrictions: [
-                            {
-                                cabin: travelClass,
-                                coverage: 'MOST_SEGMENTS',
-                                originDestinationIds: ['1'],
-                            },
-                        ],
-                    },
-                },
-            };
-
-            // API endpoints
-            const getApiUrl = `https://api.example.com/shopping/flight-offers?${queryParams.toString()}`;
-            const postApiUrl = `https://api.example.com/shopping/flight-offers`;
-
-            try {
-                // Make the GET request
-                const getResponse = await fetch(getApiUrl, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEY}`, // Include the API key
-                    },
-                });
-
-                if (!getResponse.ok) {
-                    throw new Error(`GET request failed with status: ${getResponse.status}`);
+    const requestBody = {
+        currencyCode: "USD",
+        originDestinations: [
+            {
+                id: "1",
+                originLocationCode: "NYC",
+                destinationLocationCode: "MAD",
+                departureDateTimeRange: {
+                    date: "2025-05-01",
+                    time: "10:00:00"
                 }
-
-                const getData = await getResponse.json();
-                console.log('GET Flight Offers:', getData);
-
-                // Make the POST request
-                const postResponse = await fetch(postApiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEY}`, // Include the API key
-                    },
-                    body: JSON.stringify(requestBody),
-                });
-
-                if (!postResponse.ok) {
-                    throw new Error(`POST request failed with status: ${postResponse.status}`);
-                }
-
-                const postData = await postResponse.json();
-                console.log('POST Flight Offers:', postData);
-
-                // Store the data in localStorage (or log it to the console)
-                localStorage.setItem('getFlightOffers', JSON.stringify(getData));
-                localStorage.setItem('postFlightOffers', JSON.stringify(postData));
-
-                // Optionally, redirect to a results page or display the data
-                alert('Flight offers retrieved successfully! Check the console for details.');
-            } catch (error) {
-                console.error('Error fetching flight offers:', error);
-                alert('Failed to fetch flight offers. Please try again later.');
             }
-        });
-    }
-});
+        ],
+        travelers: [{ id: "1", travelerType: "ADULT" }],
+        sources: ["GDS"],
+        searchCriteria: {
+            maxFlightOffers: 5,
+            flightFilters: {
+                cabinRestrictions: [
+                    {
+                        cabin: "ECONOMY",
+                        coverage: "MOST_SEGMENTS",
+                        originDestinationIds: ["1"]
+                    }
+                ]
+            }
+        }
+    };
 
-// You could add more functionality here, such as:
-// - Form validation
-// - Date picker functionality
-// - Search functionality
-// - Saving form data to localStorage
+    const response = await fetch(flightOffersUrl, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.amadeus+json"
+        },
+        body: JSON.stringify(requestBody)
+    });
+
+    const data = await response.json();
+    console.log(data); // Log the response
+    return data; // Return flight offers
+}
+
+getFlightOffers().then(data => console.log("Flight Offers:", data));
