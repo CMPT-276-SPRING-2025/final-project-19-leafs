@@ -47,11 +47,111 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = 'saved-flights.html';
         });
     }
+
+    // Handle flight search
+    const searchButton = document.querySelector('.search-button'); // Search button in the form
+
+    if (searchButton) {
+        searchButton.addEventListener('click', async function () {
+            // Collect user inputs from the form
+            const origin = document.getElementById('from').value.trim(); // Origin location
+            const destination = document.getElementById('to').value.trim(); // Destination location
+            const departureDate = document.getElementById('departure').value; // Departure date
+            const returnDate = document.getElementById('return').value; // Return date (optional)
+            const adults = parseInt(document.getElementById('adult-count').textContent, 10); // Number of adults
+            const children = parseInt(document.getElementById('children-count').textContent, 10) || 0; // Number of children
+            const travelClass = document.getElementById('class').value.toUpperCase(); // Travel class
+
+            // Validate inputs
+            if (!origin || !destination || !departureDate || adults < 1) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            try {
+                // Get the access token
+                const accessToken = await getAccessToken();
+
+                // Construct the request body dynamically based on user inputs
+                const requestBody = {
+                    currencyCode: "CAD", // Set currency to CAD
+                    originDestinations: [
+                        {
+                            id: "1",
+                            originLocationCode: origin,
+                            destinationLocationCode: destination,
+                            departureDateTimeRange: {
+                                date: departureDate,
+                                time: "10:00:00" // Default time
+                            }
+                        }
+                    ],
+                    travelers: [
+                        { id: "1", travelerType: "ADULT" },
+                        ...Array(children).fill().map((_, index) => ({
+                            id: (index + 2).toString(),
+                            travelerType: "CHILD"
+                        }))
+                    ],
+                    sources: ["GDS"],
+                    searchCriteria: {
+                        maxFlightOffers: 5,
+                        flightFilters: {
+                            cabinRestrictions: [
+                                {
+                                    cabin: travelClass,
+                                    coverage: "MOST_SEGMENTS",
+                                    originDestinationIds: ["1"]
+                                }
+                            ]
+                        }
+                    }
+                };
+
+                // Add return date if provided
+                if (returnDate) {
+                    requestBody.originDestinations.push({
+                        id: "2",
+                        originLocationCode: destination,
+                        destinationLocationCode: origin,
+                        departureDateTimeRange: {
+                            date: returnDate,
+                            time: "10:00:00" // Default time
+                        }
+                    });
+                }
+
+                // Make the API call
+                const flightOffersUrl = "https://test.api.amadeus.com/v2/shopping/flight-offers";
+                const response = await fetch(flightOffersUrl, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`,
+                        "Content-Type": "application/json",
+                        "Accept": "application/vnd.amadeus+json"
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch flight offers: ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log("Flight Offers:", data); // Log the response
+
+                // Display the results or handle them as needed
+                alert('Flight offers retrieved successfully! Check the console for details.');
+            } catch (error) {
+                console.error("Error fetching flight offers:", error);
+                alert('Failed to fetch flight offers. Please try again later.');
+            }
+        });
+    }
 });
 
+// Function to get the access token
 async function getAccessToken() {
-    const AMADEUS_API_KEY = config.AMADEUS_API_KEY; // Replace with your API Key
-    const AMADEUS_API_SECRET = config.AMADEUS_API_SECRET; // Replace with your API Secret
     const authUrl = "https://test.api.amadeus.com/v1/security/oauth2/token";
 
     const response = await fetch(authUrl, {
@@ -61,61 +161,11 @@ async function getAccessToken() {
         },
         body: new URLSearchParams({
             grant_type: "client_credentials",
-            client_id: AMADEUS_API_KEY,
-            client_secret: AMADEUS_API_SECRET
+            client_id: config.AMADEUS_API_KEY,
+            client_secret: config.AMADEUS_API_SECRET
         })
     });
 
     const data = await response.json();
     return data.access_token; // Return the token for further API calls
 }
-
-async function getFlightOffers() {
-    const accessToken = await getAccessToken(); // Get token first
-    const flightOffersUrl = "https://test.api.amadeus.com/v2/shopping/flight-offers";
-
-    const requestBody = {
-        currencyCode: "USD",
-        originDestinations: [
-            {
-                id: "1",
-                originLocationCode: "NYC",
-                destinationLocationCode: "MAD",
-                departureDateTimeRange: {
-                    date: "2025-05-01",
-                    time: "10:00:00"
-                }
-            }
-        ],
-        travelers: [{ id: "1", travelerType: "ADULT" }],
-        sources: ["GDS"],
-        searchCriteria: {
-            maxFlightOffers: 5,
-            flightFilters: {
-                cabinRestrictions: [
-                    {
-                        cabin: "ECONOMY",
-                        coverage: "MOST_SEGMENTS",
-                        originDestinationIds: ["1"]
-                    }
-                ]
-            }
-        }
-    };
-
-    const response = await fetch(flightOffersUrl, {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-            "Accept": "application/vnd.amadeus+json"
-        },
-        body: JSON.stringify(requestBody)
-    });
-
-    const data = await response.json();
-    console.log(data); // Log the response
-    return data; // Return flight offers
-}
-
-getFlightOffers().then(data => console.log("Flight Offers:", data));
