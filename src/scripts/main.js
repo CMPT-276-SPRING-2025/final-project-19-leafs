@@ -1,5 +1,3 @@
-import config from '../../config.js';
-
 // Function to swap the From and To locations
 function swapLocations() {
     const fromInput = document.getElementById('from');
@@ -161,8 +159,8 @@ async function getAccessToken() {
         },
         body: new URLSearchParams({
             grant_type: "client_credentials",
-            client_id: config.AMADEUS_API_KEY,
-            client_secret: config.AMADEUS_API_SECRET
+            client_id: window.config.AMADEUS_API_KEY,
+            client_secret: window.config.AMADEUS_API_SECRET
         })
     });
 
