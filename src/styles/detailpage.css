@@ -1,0 +1,142 @@
+/* General */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2ece6;
+  }
+  
+  /* Header */
+  header {
+    background-color: #1976d2;
+    padding: 1rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .back-btn {
+    background-color: white;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .user-profile {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-profile img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+  
+  /* Layout */
+  .container {
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+  }
+  
+  .flight-info {
+    flex: 3;
+  }
+  
+  .side-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Cards */
+  .card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .flight-title {
+    font-weight: bold;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .city-arrow {
+    font-size: 28px;
+    margin: 0 1rem;
+  }
+  
+  .flight-date {
+    margin-top: 0.5rem;
+  }
+  
+  .time-note {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  /* Flight Details */
+  .flight-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .airport-info {
+    margin-top: 0.5rem;
+  }
+  
+  .arrival-info {
+    margin-top: 0.5rem;
+  }
+  
+  /* Side Panel */
+  .price {
+    font-size: 28px;
+    font-weight: bold;
+    color: green;
+  }
+  
+  .save-flight {
+    margin: 1rem 0;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .book-btn {
+    background-color: #2979ff;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Chatbox */
+  .chatbox {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
