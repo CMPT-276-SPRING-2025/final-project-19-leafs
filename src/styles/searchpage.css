@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -15,85 +15,113 @@ body {
   color: #222;
 }
 
-.top-bar {
-  background-color: #1f77f0;
+.header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 2rem;
-  color: #fff;
-}
-
-.back-button {
-  background: #fff;
-  color: #222;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.search-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #4169E1;
+  color: white;
 }
 
 .search-bar {
-  width: 100%;
-  max-width: 500px;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: none;
-  font-size: 16px;
-}
-
-.profile-box {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: white;
-  border-radius: 999px;
-  text-decoration: none;
-  color: #000;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-  margin-right: 1rem;
+  background-color: white;
+  border-radius: 50px;
+  padding: 8px 15px;
+  max-width: 400px;
+  width: 100%;
 }
 
-.profile-box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.search-icon {
+  color: #666;
+  margin-right: 10px;
 }
 
-.avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.profile-text {
-  display: flex;
-  flex-direction: column;
+.search-bar input {
+  border: none;
+  outline: none;
+  width: 100%;
   font-size: 14px;
 }
 
-.username {
-  font-weight: bold;
-  font-size: 15px;
+.user-profile {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 50px;
+  padding: 8px 15px;
+  color: #333;
 }
 
-.subtext {
+.avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #FF7F50;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-right: 10px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.user-message {
   font-size: 12px;
   color: #666;
 }
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
 
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
 
+.back-button i {
+  margin-right: 8px;
+}
 
+.passenger-types {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 100%;
+  margin: 8px 0 8px 0;
+
+}
+
+.passenger-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 12px 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+  opacity: 100%;
+
+}
 .page-container {
   display: flex;
   max-width: 1300px;
@@ -205,6 +233,11 @@ body {
 .price-range .yellow { background-color: #ffcc00; }
 .price-range .red { background-color: #ff4444; }
 
+.price-range-inline {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  gap: 10px; /* Add spacing between the two elements */
+}
 .best-price {
   display: flex;
   gap: 2rem;
