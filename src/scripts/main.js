@@ -169,20 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Function to get the access token
 async function getAccessToken() {
-    const authUrl = "https://test.api.amadeus.com/v1/security/oauth2/token";
-
-    const response = await fetch(authUrl, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: new URLSearchParams({
-            grant_type: "client_credentials",
-            client_id: window.config.AMADEUS_API_KEY,
-            client_secret: window.config.AMADEUS_API_SECRET
-        })
-    });
-
+    const response = await fetch("/.netlify/functions/getAccessToken");
     const data = await response.json();
     return data.access_token; // Return the token for further API calls
 }
