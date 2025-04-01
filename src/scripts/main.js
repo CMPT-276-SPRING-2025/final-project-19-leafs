@@ -65,6 +65,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Please fill in all required fields.');
                 return;
             }
+            
+            // Clear only previous search data, not the login info
+            localStorage.removeItem('userChoices'); // Remove previous user choices
+            localStorage.removeItem('flightOffers'); // Remove previous flight offers
+
+            // Save user choices to localStorage
+            const userChoices = {
+                origin,
+                destination,
+                departureDate,
+                returnDate,
+                adults,
+                children,
+                travelClass
+            };
+            localStorage.setItem('userChoices', JSON.stringify(userChoices));
 
             try {
                 // Get the access token
@@ -93,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     ],
                     sources: ["GDS"],
                     searchCriteria: {
-                        maxFlightOffers: 5,
+                        maxFlightOffers: 50, // Increase the number of flight offers to display
                         flightFilters: {
                             cabinRestrictions: [
                                 {
@@ -138,8 +154,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 const data = await response.json();
                 console.log("Flight Offers:", data); // Log the response
 
-                // Display the results or handle them as needed
-                alert('Flight offers retrieved successfully! Check the console for details.');
+                // Save flight offers to localStorage
+                localStorage.setItem('flightOffers', JSON.stringify(data));
+
+                // Redirect to the search page
+                window.location.href = '../../searchpage.html';
             } catch (error) {
                 console.error("Error fetching flight offers:", error);
                 alert('Failed to fetch flight offers. Please try again later.');
