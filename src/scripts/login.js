@@ -82,8 +82,7 @@ function handleSignup() {
     const email = document.getElementById('signup-email').value;
     const phone = document.getElementById('signup-phone').value;
     const password = document.getElementById('signup-password').value;
-    const confirmPassword = document.getElementById('signup-confirm').value;
-    const termsChecked = document.getElementById('terms').checked;
+    const confirmPassword = document.getElementById('signup-confirm').value; // Retrieve confirm password value
     const errorElement = document.getElementById('signup-error');
     
     // Basic validation
@@ -94,11 +93,6 @@ function handleSignup() {
     
     if (password !== confirmPassword) {
         errorElement.textContent = 'Passwords do not match';
-        return;
-    }
-    
-    if (!termsChecked) {
-        errorElement.textContent = 'Please agree to the Terms of Service and Privacy Policy';
         return;
     }
     
