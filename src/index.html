@@ -40,7 +40,7 @@
                 <div class="location-section">
                     <div class="from-section">
                         <label for="from">From</label>
-                        <input type="text" id="from" placeholder="Airport or City">
+                        <input type="text" id="from" placeholder="AIRPORT eg. YVR">
                     </div>
                     
                     <div class="swap-button" onclick="swapLocations()">
@@ -49,7 +49,7 @@
                     
                     <div class="to-section">
                         <label for="to">To</label>
-                        <input type="text" id="to" placeholder="Airport or City">
+                        <input type="text" id="to" placeholder="AIRPORT eg. YVR">
                     </div>
                 </div>
                 
@@ -60,9 +60,8 @@
                         <div class="select-wrapper">
                             <select id="trip-type">
                                 <option value="" selected disabled>Select</option>
-                                <option value="round-trip">Round Trip</option>
+                                <!-- <option value="round-trip">Round Trip</option> -->
                                 <option value="one-way">One Way</option>
-                                <option value="multi-city">Multi-City</option>
                             </select>
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
@@ -74,9 +73,7 @@
                             <select id="class">
                                 <option value="" selected disabled>Select</option>
                                 <option value="economy">Economy</option>
-                                <option value="premium-economy">Premium Economy</option>
                                 <option value="business">Business</option>
-                                <option value="first">First Class</option>
                             </select>
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
@@ -107,7 +104,7 @@
                     <div class="departure-date">
                         <label for="departure">Departure Date</label>
                         <div class="date-input">
-                            <input type="text" id="departure" placeholder="MM/DD/YYYY">
+                            <input type="text" id="departure" placeholder="YYYY-MM-DD">
                             <i class="fa-regular fa-calendar"></i>
                         </div>
                     </div>
@@ -115,7 +112,7 @@
                     <div class="return-date">
                         <label for="return">Return Date</label>
                         <div class="date-input">
-                            <input type="text" id="return" placeholder="MM/DD/YYYY">
+                            <input type="text" id="return" placeholder="YYYY-MM-DD">
                             <i class="fa-regular fa-calendar"></i>
                         </div>
                     </div>
