@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 localStorage.setItem('flightOffers', JSON.stringify(data));
 
                 // Redirect to the search page
-                window.location.href = '../../searchpage.html';
+                window.location.href = 'searchpage.html';
             } catch (error) {
                 console.error("Error fetching flight offers:", error);
                 alert('Failed to fetch flight offers. Please try again later.');
