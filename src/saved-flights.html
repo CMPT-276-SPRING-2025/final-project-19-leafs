@@ -7,15 +7,19 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="saved-flights.css">
+    <link rel="stylesheet" href="styles/saved-flights.css">
 </head>
 <body>
     <div class="saved-flights-page">
         <!-- Header -->
         <header class="header">
             <a href="main.html" class="back-button">
-                <i class="fa-solid fa-arrow-left"></i> Back
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
             </a>
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="Search by Flight Number, Airport or City">
+            </div>
         </header>
 
         <!-- Main Content -->
@@ -25,7 +29,7 @@
             <!-- Profile Card -->
             <div class="profile-card">
                 <div class="profile-avatar">
-                    <img src="assets/avatar-img.png" alt="User Avatar">
+                    <img src="default-avatar.png" alt="User Avatar">
                 </div>
                 <div class="profile-username" id="profile-username">Username</div>
                 <div class="profile-info">
