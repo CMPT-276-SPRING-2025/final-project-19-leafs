@@ -1,9 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
 /* General */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f2ece6;
+    font-size: 16px;
+    min-height: 100vh;
+    background: linear-gradient(#EEEEFF, #CBC7FF);
+    color: #222;
   }
+
+  .top-bar {
+    background-color: #1f77f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 2rem;
+    color: #fff;
+  }
+  
+  .back-button {
+    background: #fff;
+    color: #222;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .search-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-bar {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+  }
+  
+  .profile-box {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: white;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    margin-right: 1rem;
+  }
+  
+  .profile-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .profile-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+  }
+  
+  .username {
+    font-weight: bold;
+    font-size: 15px;
+  }
+  
+  .subtext {
+    font-size: 12px;
+    color: #666;
+  }  
   
   /* Header */
   header {
