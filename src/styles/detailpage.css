@@ -81,6 +81,64 @@ body {
     flex-direction: column;
     font-size: 14px;
   }
+
+  .flight-header {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  
+  .flight-details-grid {
+    display: grid;
+    grid-template-areas:
+      "title title"
+      "route route"
+      "date time";
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem 2rem;
+  }
+  
+  .flight-title-top {
+    grid-area: title;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .flight-route {
+    grid-area: route;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .city-arrow {
+    margin: 0 1rem;
+    font-size: 24px;
+  }
+  
+  .flight-date {
+    grid-area: date;
+    font-weight: 500;
+  }
+  
+  .time-note {
+    grid-area: time;
+    font-size: 14px;
+    color: gray;
+    text-align: right;
+  }
+  
+
+  .flight-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 1rem;
+  }
+  
   
   .username {
     font-weight: bold;
@@ -194,9 +252,9 @@ body {
   
   /* Side Panel */
   .price {
-    font-size: 28px;
-    font-weight: bold;
-    color: green;
+    font-size: 36px;
+    font-weight: 800;
+    color: #00B300;
   }
   
   .save-flight {
@@ -209,11 +267,26 @@ body {
     background-color: #2979ff;
     color: white;
     border: none;
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
+    padding: 1.2rem 2.5rem;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
   }
+
+  .book-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  .heart-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  
   
   /* Chatbox */
   .chatbox {
