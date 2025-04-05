@@ -140,7 +140,6 @@ document.addEventListener('DOMContentLoaded', function () {
         flightResultsContainer.appendChild(flightCard);
     });
 
-
     // Store flight detail for flight offer if the user asks for detail
     // Add click event listeners to all Details buttons
     document.querySelectorAll('.details-button').forEach((button, index) => {
@@ -151,6 +150,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Navigate to the detail page
             window.location.href = 'detailpage.html';
+        });
+    });
+
+    // Retrieve saved flights from localStorage
+    const savedFlights = JSON.parse(localStorage.getItem('savedFlights')) || [];
+
+    // Add click event listeners to all favorite buttons
+    document.querySelectorAll('.favorite-button').forEach((button, index) => {
+        const flightOffer = flightOffers.data[index];
+
+        // Check if the flight is already saved
+        if (savedFlights.some(flight => flight.id === flightOffer.id)) {
+            button.classList.add('liked'); // Mark as liked
+        }
+
+        button.addEventListener('click', function () {
+            const isLiked = button.classList.toggle('liked');
+
+            if (isLiked) {
+                // Add flight to saved flights
+                savedFlights.push(flightOffer);
+            } else {
+                // Remove flight from saved flights
+                const flightIndex = savedFlights.findIndex(flight => flight.id === flightOffer.id);
+                if (flightIndex !== -1) {
+                    savedFlights.splice(flightIndex, 1);
+                }
+            }
+
+            // Update localStorage
+            localStorage.setItem('savedFlights', JSON.stringify(savedFlights));
         });
     });
 });

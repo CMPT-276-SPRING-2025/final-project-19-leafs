@@ -13,17 +13,83 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load saved flights for this user
     loadSavedFlights(currentUser.id);
 
-    // Toggle favorite status
-    document.querySelectorAll('.favorite-button').forEach(button => {
-        button.addEventListener('click', function () {
-            this.classList.toggle('active');
-        });
+    // Retrieve saved flights from localStorage
+    const savedFlights = JSON.parse(localStorage.getItem('savedFlights')) || [];
+
+    // Get the container where saved flights will be displayed
+    const flightsSection = document.querySelector('.flights-section');
+
+    if (savedFlights.length === 0) {
+        flightsSection.innerHTML = '<p>No saved flights found.</p>';
+        return;
+    }
+
+    // Render each saved flight
+    savedFlights.forEach(flight => {
+        const flightCard = document.createElement('div');
+        flightCard.classList.add('flight-card');
+
+        // Extract flight details
+        const itinerary = flight.itineraries[0];
+        const segments = itinerary.segments;
+        const departure = segments[0].departure;
+        const arrival = segments[segments.length - 1].arrival;
+
+        flightCard.innerHTML = `
+            <div class="flight-details">
+                <!-- Outbound Flight -->
+                <div class="flight-leg">
+                    <div class="airline">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/45/WestJet_Logo_2018.svg/250px-WestJet_Logo_2018.svg.png" alt="Airline Logo" class="airline-logo">
+                    </div>
+                    <div class="departure">
+                        <div class="time">${new Date(departure.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                        <div class="city">${departure.iataCode}</div>
+                    </div>
+                    <div class="flight-path">
+                        <div class="duration">Flight Hours: ${itinerary.duration.replace('PT', '').toLowerCase()}</div>
+                        <div class="path-line"></div>
+                        <div class="flight-type">Direct</div>
+                    </div>
+                    <div class="arrival">
+                        <div class="time">${new Date(arrival.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                        <div class="city">${arrival.iataCode}</div>
+                    </div>
+                </div>
+                <!-- Flight Actions -->
+                <div class="flight-actions">
+                    <button class="details-button">
+                        <i class="fa-solid fa-circle-info"></i>
+                        Details
+                    </button>
+                    <button class="favorite-button liked" data-id="${flight.id}">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flight-price">
+                <div class="price-tag">
+                    <div class="price-value">C$${flight.price.total}</div>
+                </div>
+            </div>
+        `;
+
+        flightsSection.appendChild(flightCard);
     });
 
-    // Details button functionality
-    document.querySelectorAll('.details-button').forEach(button => {
+    // Add event listeners to all favorite buttons
+    document.querySelectorAll('.favorite-button').forEach(button => {
         button.addEventListener('click', function () {
-            alert('Flight details would be shown here in a modal or expanded section.');
+            const flightId = button.getAttribute('data-id');
+
+            // Remove flight from saved flights
+            const updatedFlights = savedFlights.filter(flight => flight.id !== flightId);
+
+            // Update localStorage
+            localStorage.setItem('savedFlights', JSON.stringify(updatedFlights));
+
+            // Reload the page to reflect changes
+            window.location.reload();
         });
     });
 

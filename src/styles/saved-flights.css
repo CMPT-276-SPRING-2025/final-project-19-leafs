@@ -268,48 +268,30 @@ body {
     margin-top: 10px;
 }
 
-.details-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #f0f0f0;
-    border: none;
-    padding: 8px 15px;
+.details-button, .favorite-button {
+    background: #eee;
+    border: 1px solid #ccc;
     border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
-}
-
-.details-button:hover {
-    background-color: #e0e0e0;
-}
+    margin-right: 4px;
+  }
 
 .favorite-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.favorite-button i {
-    color: #ddd;
-    font-size: 18px;
-}
-
-.favorite-button.active i {
-    color: #ff6b6b;
-}
-
-.favorite-button:hover {
-    background-color: #f8f8f8;
-}
+    font-size: 23px;
+    color: #ffffff;
+    background: #dfdfdf;
+    border: 1px solid #000000;
+    transition: color 0.3s ease;
+    
+  }
+  
+  .favorite-button.liked {
+    color: red;
+    background: #dfdfdf;
+    border: 1px solid #000000;
+  }
 
 /* Flight Price */
 .flight-price {
@@ -348,7 +330,6 @@ body {
 .price-value {
     font-size: 28px;
     font-weight: 700;
-    color: #4caf50;
 }
 
 .price-comparison {
