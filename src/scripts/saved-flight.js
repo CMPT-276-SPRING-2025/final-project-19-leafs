@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <!-- Flight Actions -->
                 <div class="flight-actions">
-                    <button class="details-button">
+                    <button class="details-button" data-id="${flight.id}">
                         <i class="fa-solid fa-circle-info"></i>
                         Details
                     </button>
@@ -77,6 +77,22 @@ document.addEventListener('DOMContentLoaded', function () {
         flightsSection.appendChild(flightCard);
     });
 
+    // Add event listeners to all "Details" buttons
+    document.querySelectorAll('.details-button').forEach(button => {
+        button.addEventListener('click', function () {
+            const flightId = button.getAttribute('data-id');
+            const selectedFlight = savedFlights.find(flight => flight.id === flightId);
+
+            if (selectedFlight) {
+                // Save the selected flight to localStorage
+                localStorage.setItem('selectedFlight', JSON.stringify(selectedFlight));
+
+                // Redirect to the detail page
+                window.location.href = 'detailpage.html';
+            }
+        });
+    });
+    
     // Add event listeners to all favorite buttons
     document.querySelectorAll('.favorite-button').forEach(button => {
         button.addEventListener('click', function () {
