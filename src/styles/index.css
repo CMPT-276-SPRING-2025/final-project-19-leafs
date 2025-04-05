@@ -303,6 +303,19 @@ input, select {
     opacity: 100%;
 
 }
+.search-button-white{
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    opacity: 100%;
+}
 
 .search-button {
     display: flex;
