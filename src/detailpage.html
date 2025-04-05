@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Flight Detail</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+
+    <!-- Linking Google fonts for icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
 
 <!-- Linking Styles file -->
   <link rel="stylesheet" href="styles/detailpage.css" />
@@ -18,8 +20,8 @@
 </head>
   <body>
     <header class="header">
-        <a href="index.html" class="back-button">
-            <i class="fa-solid fa-arrow-left"></i> Back to Home
+        <a href="searchpage.html" class="back-button">
+          <i class="fa-solid fa-arrow-left"></i> Back to Search Results
         </a>        
         <div class="search-button-white" style="cursor: pointer;" title="See Flight Schedule">
           <div>
@@ -105,16 +107,15 @@
           </div>
         </div>
       </div>
-        
-        
     
     <div class="side-panel">
       <div class="price">C$000</div>
-      <div class="like-button" onclick="toggleLike(this)">
-        <span class="heart-emoji">🤍</span>
-        <span>Save Flight</span>
-      </div>      
-      <button class="book-btn">Book on Airline website</button>
+        <button class="favorite-button">
+          <i class="fa-solid fa-heart" style="padding: 5px;"></i>
+          <div style="font-weight: bold; margin-top: 0%;" >Add to saved flights</div>
+        </button>     
+        
+        <button class="book-btn">Book on Airline website</button>
     </div>
 
     <button id="chatbot-toggler">
@@ -169,16 +170,35 @@
         </div>
     </div>
 
-    <!--    <script src="../config.js"></script> -->
-    
+    <script src="scripts/detailpage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
     <script src="scripts/chatbot.js"></script>
+    
     <script>
-        function toggleLike(el) {
-          el.classList.toggle('liked');
-          const heart = el.querySelector('.heart-emoji');
-          heart.textContent = el.classList.contains('liked') ? '❤️' : '🤍';
-        }
+
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+            if (!currentUser) {
+                // Redirect to login page if not logged in
+                window.location.href = 'login.html';
+            } else {
+                // Update username in the header
+                const usernameElement = document.querySelector('.username');
+                if (usernameElement) {
+                    usernameElement.textContent = currentUser.username;
+                }
+            }
+        });
+
+        // Add click event to user profile
+    const userProfile = document.querySelector('.user-profile');
+    if (userProfile) {
+        userProfile.addEventListener('click', function () {
+            window.location.href = 'saved-flights.html';
+        });
+    }
     </script>    
   </body>
 </html>
