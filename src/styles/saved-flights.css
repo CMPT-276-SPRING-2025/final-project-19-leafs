@@ -23,7 +23,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: #4169E1;
+    background-color: #5350C4;
     color: white;
 }
 
@@ -101,7 +101,7 @@ body {
     overflow: hidden;
     margin-bottom: 20px;
     background-color: #f0f0f0;
-    border: 3px solid #4169E1;
+    border: 3px solid #5350C4;
 }
 
 .profile-avatar img {
@@ -134,7 +134,7 @@ body {
 
 .logout-button {
     margin-top: 20px;
-    background-color: #333;
+    background-color: #5350C4;
     color: white;
     border: none;
     padding: 8px 20px;
@@ -145,7 +145,7 @@ body {
 }
 
 .logout-button:hover {
-    background-color: #555;
+    background-color: #413e92;
 }
 
 /* Flights Section */
@@ -443,7 +443,7 @@ body {
 }
 
 .modal-actions .btn.confirm {
-    background-color: #4169E1;
+    background-color: #5350C4;
     color: white;
 }
 

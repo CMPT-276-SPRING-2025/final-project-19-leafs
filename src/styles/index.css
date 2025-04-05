@@ -173,7 +173,7 @@ input, select {
 }
 
 .swap-button:hover {
-    background-color: #f8f8f8;
+    background-color: #959595;
     transform: scale(1.05);
 }
 
@@ -258,7 +258,7 @@ input, select {
 }
 
 .counter button:hover {
-    background-color: #000000;
+    background-color: #413e92;
     opacity: 100%;
     color: #ffffff;
 
@@ -334,7 +334,7 @@ input, select {
 }
 
 .search-button:hover {
-    background-color: #333;
+    background-color: #413e92;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     opacity: 100%;
