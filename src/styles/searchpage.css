@@ -352,7 +352,7 @@ body {
   color: #00cc66;
 }
 
-.details-btn, .favorite-btn {
+.details-button, .favorite-button {
   background: #eee;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -362,10 +362,15 @@ body {
   margin-right: 4px;
 }
 
-.favorite-btn {
+.favorite-button {
   font-size: 16px;
   color: #ff6666;
   background: #fff0f0;
+}
+
+.favorite-button.liked {
+  color: red;
+  background: #ffe6e6;
 }
 
 #chatbot-toggler {

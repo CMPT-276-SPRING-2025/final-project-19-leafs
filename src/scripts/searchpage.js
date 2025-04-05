@@ -125,12 +125,33 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <div class="flight-price">
                 <div class="main-price" style="color: ${priceColor};">${currency} ${price.toFixed(2)}</div>
-                <button class="details-btn">🔍 Details</button>
-                <button class="favorite-btn">🤍</button>
+                <button class="details-button">
+                  <a href="detailpage.html">
+                  <i class="fa-solid fa-circle-info"></i>
+                    Details
+                  </a>
+                </button>
+                <button class="favorite-button active">
+                    <i class="fa-solid fa-heart"></i>
+                </button>   
             </div>
         `;
 
         flightResultsContainer.appendChild(flightCard);
+    });
+
+
+    // Store flight detail for flight offer if the user asks for detail
+    // Add click event listeners to all Details buttons
+    document.querySelectorAll('.details-button').forEach((button, index) => {
+        button.addEventListener('click', function () {
+            // Save the selected flight offer to localStorage
+            const selectedFlight = flightOffers.data[index];
+            localStorage.setItem('selectedFlight', JSON.stringify(selectedFlight));
+
+            // Navigate to the detail page
+            window.location.href = 'detailpage.html';
+        });
     });
 });
 
