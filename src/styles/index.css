@@ -39,7 +39,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: #4169E1;
+    background-color: #5350C4;
     color: white;
 }
 .search-bar {
@@ -321,7 +321,7 @@ input, select {
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: #4169E1;
+    background-color: #5350C4;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -339,33 +339,6 @@ input, select {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     opacity: 100%;
 
-}
-
-/* Chat box */
-.chat-box {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-}
-
-.chat-box button {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: #4169E1;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.chat-box button:hover {
-    background-color: #333;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive adjustments */

@@ -10,7 +10,7 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(#EEEEFF, #CBC7FF);
+    background: linear-gradient(#EEEEFF, #dcdaf2);
 }
 
 #chatbot-toggler {
