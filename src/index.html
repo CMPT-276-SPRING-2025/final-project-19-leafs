@@ -221,6 +221,39 @@
                 }
             }
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const departureInput = document.getElementById('departure');
+            const returnInput = document.getElementById('return');
+
+            // Set the minimum date for the departure date (today's date)
+            const today = new Date().toISOString().split('T')[0];
+            departureInput.setAttribute('min', today);
+
+            // Update the minimum date for the return date based on the departure date
+            departureInput.addEventListener('change', function () {
+                const departureDate = departureInput.value;
+                if (departureDate) {
+                    // Set the minimum date for the return date to the day after the departure date
+                    const minReturnDate = new Date(departureDate);
+                    minReturnDate.setDate(minReturnDate.getDate() + 1);
+                    returnInput.setAttribute('min', minReturnDate.toISOString().split('T')[0]);
+                } else {
+                    // Reset the return date if departure date is cleared
+                    returnInput.value = '';
+                    returnInput.removeAttribute('min');
+                }
+            });
+
+            // Prevent selecting past dates for the return date
+            returnInput.addEventListener('click', function () {
+                const departureDate = departureInput.value;
+                if (!departureDate) {
+                    alert('Please select a departure date first.');
+                    departureInput.focus();
+                }
+            });
+        });
     </script>
 </body>
 </html>
