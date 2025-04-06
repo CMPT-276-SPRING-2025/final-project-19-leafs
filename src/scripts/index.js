@@ -208,12 +208,6 @@ function validateInputs(origin, destination, departureDate, returnDate, adults, 
         isValid = false;
     }
 
-    // Validate "Trip Type" field
-    if (!tripType || tripType === "Select") {
-        showError('trip-type', 'Please select a trip type.');
-        isValid = false;
-    }
-
     // Validate "Class" field
     const travelClass = document.getElementById('class').value;
     if (!travelClass || travelClass === "Select") {
@@ -253,7 +247,6 @@ function showError(inputId, message) {
     errorMessage.style.marginTop = "5px";
     inputElement.parentElement.appendChild(errorMessage);
 }
-
 
 // Function to get the access token
 async function getAccessToken() {
