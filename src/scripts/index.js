@@ -217,7 +217,6 @@ function validateInputs(origin, destination, departureDate, returnDate, adults, 
     // Validate "Return Date" field if round trip is selected
     if (!returnDate) {
         showError('return', 'Return date is required for round trips.');
-        isValid = false;
     }
     // Validate "Adults" field
     if (adults + children < 1) {
