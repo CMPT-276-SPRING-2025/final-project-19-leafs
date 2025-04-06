@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem('userChoices', JSON.stringify(userChoices));
             // Show the loading indicator
             loadingIndicator.classList.add('visible');
-
             try {
                 // Get the access token
                 const accessToken = await getAccessToken();
