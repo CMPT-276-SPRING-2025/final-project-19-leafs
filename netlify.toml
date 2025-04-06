@@ -1,0 +1,4 @@
+[dev]
+  publish = "src"
+  functions = "netlify/functions"
+  port = 8888
