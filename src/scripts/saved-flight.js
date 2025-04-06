@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const flightsSection = document.querySelector('.flights-section');
 
     if (savedFlights.length === 0) {
-        flightsSection.innerHTML = '<p>No saved flights found.</p>';
+        flightsSection.innerHTML = '<h2 class="section-title">Your Saved Flights</h2><p>No saved flights found.</p>';
         return;
     }
 
