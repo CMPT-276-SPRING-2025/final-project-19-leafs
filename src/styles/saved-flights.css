@@ -10,7 +10,12 @@ body {
     background-color: #f8f9fa;
     color: #333;
 }
-
+h4{
+    gap: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /* Main container */
 .saved-flights-page {
     position: relative;
@@ -175,6 +180,7 @@ body {
     border-radius: 10px;
     border: 1px solid #e0e0e0;
     width: 100%;
+    align-content: center;
 }
 
 .flight-details {
@@ -182,21 +188,25 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 20px;;
 }
 
 .flight-leg {
     display: flex;
-    gap: 10px; /* Reduce the gap between columns */
+    gap: 4.5rem; /* Reduce the gap between columns */
     align-items: center; /* Vertically align items */
     white-space: nowrap; /* Prevent text wrapping */
     width: 100%;
+    
 }
 
 .airline {
     width: 100px;
     display: flex;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .airline-logo {
@@ -209,6 +219,9 @@ body {
     flex-direction: column;
     align-items: flex-start; /* Align text to the left */
     min-width: 0; /* Prevent overflowing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .time {
@@ -218,6 +231,9 @@ body {
 
 .city {
     font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .flight-path {

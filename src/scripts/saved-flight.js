@@ -29,36 +29,72 @@ document.addEventListener('DOMContentLoaded', function () {
         const flightCard = document.createElement('div');
         flightCard.classList.add('flight-card');
 
-        // Extract flight details
-        const itinerary = flight.itineraries[0];
-        const segments = itinerary.segments;
-        const departure = segments[0].departure;
-        const arrival = segments[segments.length - 1].arrival;
-        const carrierCode = segments[0].carrierCode; // Airline code
-        const flightNumber = segments[0].number; // Flight number
-        const numberOfStops = segments.length - 1; // Calculate number of stops
+        // Extract outbound itinerary details
+        const outboundItinerary = flight.itineraries[0];
+        const outboundSegments = outboundItinerary.segments;
+        const outboundDeparture = outboundSegments[0].departure;
+        const outboundArrival = outboundSegments[outboundSegments.length - 1].arrival;
+        const outboundDuration = outboundItinerary.duration.replace('PT', '').toLowerCase();
+        const outboundStops = outboundSegments.length - 1;
+        const outboundFlightNumber = `${outboundSegments[0].carrierCode}${outboundSegments[0].number}`;
 
+        // Extract return itinerary details (if available)
+        const returnItinerary = flight.itineraries[1];
+        let returnDetails = '';
+        if (returnItinerary) {
+            const returnSegments = returnItinerary.segments;
+            const returnDeparture = returnSegments[0].departure;
+            const returnArrival = returnSegments[returnSegments.length - 1].arrival;
+            const returnDuration = returnItinerary.duration.replace('PT', '').toLowerCase();
+            const returnStops = returnSegments.length - 1;
+            const returnFlightNumber = `${returnSegments[0].carrierCode}${returnSegments[0].number}`;
+
+            returnDetails = `
+                <div class="flight-leg return-flight">
+                    <h4>${returnFlightNumber}</h4>
+                    <div class="departure">
+                        <div class="date">${new Date(returnDeparture.at).toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+                        <div class="time">${new Date(returnDeparture.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                        <div class="city">${returnDeparture.iataCode}</div>
+                    </div>
+                    <div class="flight-path">
+                        <div class="duration">Flight Hours: ${returnDuration}</div>
+                        <div class="path-line"></div>
+                        <div class="flight-type">${returnStops === 0 ? "Direct" : `${returnStops} Stop${returnStops > 1 ? "s" : ""}`}</div>
+                    </div>
+                    <div class="arrival">
+                        <div class="date">${new Date(returnArrival.at).toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+                        <div class="time">${new Date(returnArrival.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                        <div class="city">${returnArrival.iataCode}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render the flight card
         flightCard.innerHTML = `
             <div class="flight-details">
                 <!-- Outbound Flight -->
-                <div class="flight-leg">
-                    <div class="airline">
-                        <div class="flight-number"><strong>${carrierCode}${flightNumber}</strong></div> <!-- Display flight number -->
-                    </div>
+                <div class="flight-leg outbound-flight">
+                    <h4>${outboundFlightNumber}</h4>
                     <div class="departure">
-                        <div class="time">${new Date(departure.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
-                        <div class="city">${departure.iataCode}</div>
+                        <div class="date">${new Date(outboundDeparture.at).toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+                        <div class="time">${new Date(outboundDeparture.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                        <div class="city">${outboundDeparture.iataCode}</div>
                     </div>
                     <div class="flight-path">
-                        <div class="duration">Flight Hours: ${itinerary.duration.replace('PT', '').toLowerCase()}</div>
+                        <div class="duration">Flight Hours: ${outboundDuration}</div>
                         <div class="path-line"></div>
-                        <div class="flight-type">${numberOfStops === 0 ? "Direct" : `${numberOfStops} Stop${numberOfStops > 1 ? "s" : ""}`}</div> <!-- Display number of stops -->
+                        <div class="flight-type">${outboundStops === 0 ? "Direct" : `${outboundStops} Stop${outboundStops > 1 ? "s" : ""}`}</div>
                     </div>
                     <div class="arrival">
-                        <div class="time">${new Date(arrival.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
-                        <div class="city">${arrival.iataCode}</div>
+                        <div class="date">${new Date(outboundArrival.at).toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+                        <div class="time">${new Date(outboundArrival.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                        <div class="city">${outboundArrival.iataCode}</div>
                     </div>
                 </div>
+                <!-- Return Flight -->
+                ${returnDetails}
                 <!-- Flight Actions -->
                 <div class="flight-actions">
                     <button class="details-button" data-id="${flight.id}">
