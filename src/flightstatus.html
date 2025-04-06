@@ -43,5 +43,28 @@
         <div id="flight-status-results" class="results-container"></div>
     </main>
     <script src="scripts/flightstatus.js"></script>
+    <script>
+        // Check if user is logged in
+            document.addEventListener('DOMContentLoaded', function () {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+                if (!currentUser) {
+                    // Redirect to login page if not logged in
+                    window.location.href = 'login.html';
+                } else {
+                    // Update username in the header
+                    const usernameElement = document.querySelector('.username');
+                    if (usernameElement) {
+                        usernameElement.textContent = currentUser.username;
+                    }
+                }
+            });
+            const userProfile = document.querySelector('.user-profile');
+            if (userProfile) {
+                userProfile.addEventListener('click', function () {
+                window.location.href = 'saved-flights.html';
+                });
+            }
+        </script>
 </body>
 </html>
