@@ -12,6 +12,7 @@
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/chatbot.css">
+    <link rel="stylesheet" href="styles/loading.css">
 
 </head>
 <body>
@@ -131,6 +132,12 @@
                     </button>
                 </div>
             </div>
+            <div id="loading-indicator">
+                <div class="loading-animation">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    <p>Searching for flights...</p>
+                </div>
+            </div>
         </main>
         
         <!-- Chat Box -->
@@ -192,6 +199,7 @@
     <script src="scripts/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
     <script src="scripts/chatbot.js"></script>
+    <script src="scripts/loading.js"></script>
     <script>
     // Check if user is logged in
         document.addEventListener('DOMContentLoaded', function () {

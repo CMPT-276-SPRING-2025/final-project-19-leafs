@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Handle flight search
     const searchButton = document.querySelector('.search-button'); // Search button in the form
+    const loadingIndicator = document.getElementById('loading-indicator'); // Loading indicator element
 
     if (searchButton) {
         searchButton.addEventListener('click', async function () {
@@ -81,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 travelClass
             };
             localStorage.setItem('userChoices', JSON.stringify(userChoices));
+            // Show the loading indicator
+            loadingIndicator.classList.add('visible');
 
             try {
                 // Get the access token
@@ -162,6 +165,9 @@ document.addEventListener('DOMContentLoaded', function () {
             } catch (error) {
                 console.error("Error fetching flight offers:", error);
                 alert('Failed to fetch flight offers. Please try again later.');
+            } finally {
+                // Hide the loading indicator
+                loadingIndicator.classList.remove('visible');
             }
         });
     }
