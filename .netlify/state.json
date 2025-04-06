@@ -1,7 +1,7 @@
 {
 	"geolocation": {
 		"data": {
-			"city": "Burnaby",
+			"city": "Coquitlam",
 			"country": {
 				"code": "CA",
 				"name": "Canada"
@@ -11,10 +11,10 @@
 				"name": "British Columbia"
 			},
 			"timezone": "America/Vancouver",
-			"latitude": 49.2635,
-			"longitude": -122.9331,
-			"postalCode": "V5A"
+			"latitude": 49.2663,
+			"longitude": -122.8739,
+			"postalCode": "V3J"
 		},
-		"timestamp": 1743807701072
+		"timestamp": 1743981556395
 	}
 }
