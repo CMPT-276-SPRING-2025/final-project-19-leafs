@@ -34,13 +34,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const segments = itinerary.segments;
         const departure = segments[0].departure;
         const arrival = segments[segments.length - 1].arrival;
+        const carrierCode = segments[0].carrierCode; // Airline code
+        const flightNumber = segments[0].number; // Flight number
+        const numberOfStops = segments.length - 1; // Calculate number of stops
 
         flightCard.innerHTML = `
             <div class="flight-details">
                 <!-- Outbound Flight -->
                 <div class="flight-leg">
                     <div class="airline">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/45/WestJet_Logo_2018.svg/250px-WestJet_Logo_2018.svg.png" alt="Airline Logo" class="airline-logo">
+                        <div class="flight-number"><strong>${carrierCode}${flightNumber}</strong></div> <!-- Display flight number -->
                     </div>
                     <div class="departure">
                         <div class="time">${new Date(departure.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
@@ -49,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="flight-path">
                         <div class="duration">Flight Hours: ${itinerary.duration.replace('PT', '').toLowerCase()}</div>
                         <div class="path-line"></div>
-                        <div class="flight-type">Direct</div>
+                        <div class="flight-type">${numberOfStops === 0 ? "Direct" : `${numberOfStops} Stop${numberOfStops > 1 ? "s" : ""}`}</div> <!-- Display number of stops -->
                     </div>
                     <div class="arrival">
                         <div class="time">${new Date(arrival.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
@@ -92,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-    
+
     // Add event listeners to all favorite buttons
     document.querySelectorAll('.favorite-button').forEach(button => {
         button.addEventListener('click', function () {
