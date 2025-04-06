@@ -15,14 +15,14 @@ body {
     color: #222;
 }
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background-color: #5350C4;
-  color: white;
-}
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #5350C4;
+    color: white;
+  }
+  
 .search-button-white{
   display: flex;
   align-items: center;
@@ -76,7 +76,6 @@ body {
 }
 
 .username {
-  font-weight: 500;
   font-size: 14px;
 }
 
@@ -102,73 +101,6 @@ body {
 
 .back-button i {
   margin-right: 8px;
-}
-.top-bar {
-    background-color: #5350C4;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 2rem;
-    color: #fff;
-}
- 
-.search-button-white{
-    display: flex;
-    align-items: center;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    border: none;
-    padding: 12px 24px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    opacity: 100%;
-}
-  
-.search-icon {
-  color: #666;
-  margin-right: 10px;
-}
-
-.search-bar input {
-  border: none;
-  outline: none;
-  width: 100%;
-  font-size: 14px;
-}
-  
-.profile-box {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    background: white;
-    border-radius: 999px;
-    text-decoration: none;
-    color: #000;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-    margin-right: 1rem;
-}
-  
-.profile-box:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-  
-.avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-  
-.profile-text {
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
 }
 
 .flight-header {
@@ -416,7 +348,6 @@ body {
   
   
 .username {
-    font-weight: bold;
     font-size: 15px;
 }
   
