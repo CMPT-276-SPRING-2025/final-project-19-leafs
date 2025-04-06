@@ -67,7 +67,7 @@
                         <div class="select-wrapper">
                             <select id="trip-type">
                                 <option value="" selected disabled>Select</option>
-                                <option value="round-trip">Round Trip</option>
+                                <!-- <option value="round-trip">Round Trip</option> -->
                                 <option value="one-way">One Way</option>
                             </select>
                             <i class="fa-solid fa-chevron-down"></i>
@@ -138,7 +138,7 @@
             <span class="material-symbols-rounded">mode_comment</span>
             <span class="material-symbols-rounded">close</span>
         </button>
-        
+        <div id="chatbot-overlay"></div>
         <div class="chatbot-popup">
             <!-- ChatBot Header -->
             <div class="chat-header">
@@ -187,9 +187,10 @@
         </div>
     </div>
 
-    <!-- Link to external JavaScript file -->
-    <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+    
+    <!-- Linking custom script -->
     <script src="scripts/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
     <script src="scripts/chatbot.js"></script>
     <script>
     // Check if user is logged in

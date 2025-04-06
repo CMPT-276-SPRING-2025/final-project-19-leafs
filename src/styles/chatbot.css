@@ -10,7 +10,25 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(#EEEEFF, #dcdaf2);
+    background: linear-gradient(#EEEEFF, #CBC7FF);
+}
+/* Overlay for dark background */
+#chatbot-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    z-index: 998; /* Ensure it appears above other elements */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+body.show-chatbot #chatbot-overlay {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 #chatbot-toggler {
@@ -27,10 +45,12 @@ body {
     border-radius: 50%;
     background: #5350C4;
     transition: all 0.2s ease;
+    z-index: 999;
 }
 
 body.show-chatbot #chatbot-toggler {
     transform: rotate(90deg);
+    
 }
 
 #chatbot-toggler span {
@@ -63,6 +83,7 @@ body.show-chatbot #chatbot-toggler span:last-child {
     pointer-events: none;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
     0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Ensure it appears above the overlay */
 }
 
 body.show-chatbot .chatbot-popup {

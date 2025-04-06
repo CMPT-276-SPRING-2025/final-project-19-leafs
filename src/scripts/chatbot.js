@@ -6,6 +6,7 @@ const fileUploadWrapper = document.querySelector(".file-upload-wrapper");
 const fileCancelButton = document.querySelector("#file-cancel");
 const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
+const chatbotOverlay = document.querySelector('#chatbot-overlay');
 
 // API setup
 const API_URL = "/.netlify/functions/fetchAI"
@@ -195,3 +196,7 @@ sendMessageButton.addEventListener("click", (e) => handleOutgoingMessage(e));
 document.querySelector("#file-upload").addEventListener("click", () => fileInput.click());
 chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
 closeChatbot.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+// Close chatbot when clicking on the overlay
+chatbotOverlay.addEventListener("click", () => {
+    document.body.classList.remove("show-chatbot");
+});
