@@ -180,8 +180,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
-    text-align: center;
+    padding: 1.5rem 0;
+    gap: 1rem;
 }
   
 .flight-details > div {
@@ -193,6 +193,104 @@ body {
     margin: 0 auto;
 }
   
+.flight-segment {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.segment-title {
+  margin-bottom: 1rem;
+  color: #5350c4;
+  font-size: 16px;
+  text-align: center;
+}
+
+.flight-time {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.flight-duration {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.flight-line {
+  width: 100px;
+  height: 2px;
+  background-color: #333;
+  border: none;
+  position: relative;
+  margin: 0.5rem auto;
+}
+
+.flight-line:after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid #333;
+}
+
+.price-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.itinerary-container {
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+}
+
+.itinerary-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.itinerary-column h3 {
+  margin-bottom: 1rem;
+  color: #5350c4;
+}
+
+.time-info {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.airport-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.flight-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  font-size: 14px;
+}
+
 .ws-header {
     font-weight: bold;
     margin-bottom: 1rem;
@@ -380,7 +478,7 @@ header {
 
 .route-line-arrow {
     display: inline-block;
-    width: 200px; /* make this longer or shorter if needed */
+    width: 150px; /* make this longer or shorter if needed */
     height: 2px;
     background-color: black;
     position: relative;
@@ -425,7 +523,8 @@ header {
     border-radius: 22px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
-    padding: 3rem;
+    padding: 25px;
+    margin-bottom: 20px;
 }
   
 .flight-title {
@@ -434,6 +533,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
   
 .city-arrow {
@@ -541,4 +641,33 @@ header {
 
 .favorite-button:hover {
     background-color: #f8f8f8;
+}
+
+.favorite-button.liked i {
+    color: red;
+}
+
+/* Additional CSS for horizontal flight layout */
+
+.flight-card {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.flight-card h3 {
+  color: #5350c4;
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Style for the flight details section */
+.flight-details-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
