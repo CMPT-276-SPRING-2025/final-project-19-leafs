@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Retrieve the selected flight data from localStorage
     const selectedFlight = JSON.parse(localStorage.getItem('selectedFlight'));
+    const savedFlights = JSON.parse(localStorage.getItem('savedFlights')) || [];
 
     if (!selectedFlight) {
         // Redirect back to search page if no flight data is found
@@ -50,11 +51,40 @@ document.addEventListener('DOMContentLoaded', function () {
     sidePanelElement.innerHTML = `
         <div class="price">C$${selectedFlight.price.total}</div>
         <button class="favorite-button">
-            <i class="fa-solid fa-heart" style="padding: 5px;"></i>
-            <div style="font-weight: bold; margin-top: 0%;">Add to saved flights</div>
+            <i class="fa-solid fa-heart"></i>
+            <div style="font-weight: bold; margin-top: 0%; padding: 9px;">Add to saved flights</div>
         </button>     
         <button class="book-btn">Book on Airline website</button>
     `;
+
+    // Handle the favorite button
+    const favoriteButton = document.querySelector('.favorite-button');
+
+    // Check if the flight is already saved
+    if (savedFlights.some(flight => flight.id === selectedFlight.id)) {
+        favoriteButton.classList.add('liked'); // Mark as liked
+        favoriteButton.querySelector('i').style.color = 'red'; // Change heart color to red
+    }
+
+    favoriteButton.addEventListener('click', function () {
+        const isLiked = favoriteButton.classList.toggle('liked');
+
+        if (isLiked) {
+            // Add flight to saved flights
+            savedFlights.push(selectedFlight);
+            favoriteButton.querySelector('i').style.color = 'red'; // Change heart color to red
+        } else {
+            // Remove flight from saved flights
+            const flightIndex = savedFlights.findIndex(flight => flight.id === selectedFlight.id);
+            if (flightIndex !== -1) {
+                savedFlights.splice(flightIndex, 1);
+            }
+            favoriteButton.querySelector('i').style.color = ''; // Reset heart color
+        }
+
+        // Update localStorage
+        localStorage.setItem('savedFlights', JSON.stringify(savedFlights));
+    });
 
     // Populate the flight details in the WS body
     const wsHeaderElement = document.querySelector('.ws-header');
