@@ -46,26 +46,44 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Handle trip type selection
+    const tripTypeSelect = document.getElementById('trip-type');
+    const returnDateInput = document.getElementById('return');
+
+    // Add event listener to trip type dropdown
+    tripTypeSelect.addEventListener('change', function () {
+        if (tripTypeSelect.value === 'one-way') {
+            // Clear and disable the return date input for one-way trips
+            returnDateInput.value = ''; // Clear the return date
+            returnDateInput.setAttribute('disabled', 'true'); // Disable the input
+        } else {
+            // Enable the return date input for round trips
+            returnDateInput.removeAttribute('disabled');
+        }
+    });
+
     // Handle flight search
     const searchButton = document.querySelector('.search-button'); // Search button in the form
+    const loadingIndicator = document.getElementById('loading-indicator'); // Loading indicator element
 
     if (searchButton) {
-        searchButton.addEventListener('click', async function () {
+        searchButton.addEventListener('click', async function (e) {
+            e.preventDefault(); // Prevent form submission
+
             // Collect user inputs from the form
             const origin = document.getElementById('from').value.trim(); // Origin location
             const destination = document.getElementById('to').value.trim(); // Destination location
             const departureDate = document.getElementById('departure').value; // Departure date
-            const returnDate = document.getElementById('return').value; // Return date (optional)
+            const returnDate = returnDateInput.value; // Return date (optional)
             const adults = parseInt(document.getElementById('adult-count').textContent, 10); // Number of adults
             const children = parseInt(document.getElementById('children-count').textContent, 10) || 0; // Number of children
-            const travelClass = document.getElementById('class').value.toUpperCase(); // Travel class
+            const tripType = tripTypeSelect.value; // Trip type (One Way or Round Trip)
 
             // Validate inputs
-            if (!origin || !destination || !departureDate || adults < 1) {
-                alert('Please fill in all required fields.');
-                return;
+            if (!validateInputs(origin, destination, departureDate, returnDate, adults, tripType)) {
+                return; // Stop execution if validation fails
             }
-            
+
             // Clear only previous search data, not the login info
             localStorage.removeItem('userChoices'); // Remove previous user choices
             localStorage.removeItem('flightOffers'); // Remove previous flight offers
@@ -74,14 +92,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const userChoices = {
                 origin,
                 destination,
+                tripType, // Add trip type to user choices
                 departureDate,
                 returnDate,
                 adults,
                 children,
-                travelClass
+                travelClass: document.getElementById('class').value.toUpperCase() // Travel class
             };
             localStorage.setItem('userChoices', JSON.stringify(userChoices));
 
+            // Show the loading indicator
+            loadingIndicator.classList.add('visible');
             try {
                 // Get the access token
                 const accessToken = await getAccessToken();
@@ -96,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             destinationLocationCode: destination,
                             departureDateTimeRange: {
                                 date: departureDate,
-                                time: "10:00:00" // Default time
                             }
                         }
                     ],
@@ -113,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         flightFilters: {
                             cabinRestrictions: [
                                 {
-                                    cabin: travelClass,
+                                    cabin: userChoices.travelClass,
                                     coverage: "MOST_SEGMENTS",
                                     originDestinationIds: ["1"]
                                 }
@@ -130,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         destinationLocationCode: origin,
                         departureDateTimeRange: {
                             date: returnDate,
-                            time: "10:00:00" // Default time
                         }
                     });
                 }
@@ -162,27 +181,67 @@ document.addEventListener('DOMContentLoaded', function () {
             } catch (error) {
                 console.error("Error fetching flight offers:", error);
                 alert('Failed to fetch flight offers. Please try again later.');
+            } finally {
+                // Hide the loading indicator
+                loadingIndicator.classList.remove('visible');
             }
         });
     }
 });
 
+// Function to validate inputs
+function validateInputs(origin, destination, departureDate, returnDate, adults, children, tripType) {
+    let isValid = true;
+
+    // Clear previous error messages
+    document.querySelectorAll(".error-message").forEach((error) => (error.textContent = ""));
+
+    // Validate "From" field
+    if (!origin) {
+        showError('from', 'This field is required.');
+        isValid = false;
+    }
+
+    // Validate "To" field
+    if (!destination) {
+        showError('to', 'This field is required.');
+        isValid = false;
+    }
+
+    // Validate "Departure Date" field
+    if (!departureDate) {
+        showError('departure', 'This field is required.');
+        isValid = false;
+    }
+
+    // Validate "Return Date" field if round trip is selected
+    if (!returnDate) {
+        showError('return', 'Return date is required for round trips.');
+    }
+    // Validate "Adults" field
+    if (adults + children < 1) {
+        alert('At least one passenger is required.');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+// Function to show error message
+function showError(inputId, message) {
+    const inputElement = document.getElementById(inputId);
+    const errorMessage = inputElement.nextElementSibling || document.createElement("div");
+    errorMessage.className = "error-message";
+    errorMessage.textContent = message;
+    errorMessage.style.color = "red";
+    errorMessage.style.fontSize = "12px";
+    errorMessage.style.marginTop = "5px";
+    inputElement.parentElement.appendChild(errorMessage);
+}
+
 // Function to get the access token
 async function getAccessToken() {
-    const authUrl = "https://test.api.amadeus.com/v1/security/oauth2/token";
-
-    const response = await fetch(authUrl, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: new URLSearchParams({
-            grant_type: "client_credentials",
-            client_id: window.config.AMADEUS_API_KEY,
-            client_secret: window.config.AMADEUS_API_SECRET
-        })
-    });
-
+    const response = await fetch("/.netlify/functions/getAccessToken");
     const data = await response.json();
     return data.access_token; // Return the token for further API calls
 }

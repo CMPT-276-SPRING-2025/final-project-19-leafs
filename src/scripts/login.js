@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if user is already logged in
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
-        // Redirect to main.html if already logged in
-        window.location.href = 'main.html';
+        // Redirect to index.html if already logged in
+        window.location.href = 'index.html';
     }
     
     // Login form submission
@@ -72,8 +72,8 @@ function handleLogin() {
     
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
     
-    // Redirect to main.html
-    window.location.href = 'main.html';
+    // Redirect to index.html
+    window.location.href = 'index.html';
 }
 
 // Handle signup form submission
@@ -134,6 +134,6 @@ function handleSignup() {
     const savedFlights = [];
     localStorage.setItem(`savedFlights_${newUser.id}`, JSON.stringify(savedFlights));
     
-    // Redirect to main.html
-    window.location.href = 'main.html';
+    // Redirect to index.html
+    window.location.href = 'index.html';
 }

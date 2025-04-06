@@ -1,2 +1,5 @@
 config.js
 
+
+# Local Netlify folder
+.netlify

@@ -92,8 +92,8 @@ body {
 }
 
 .tab-button.active {
-    color: #4169E1;
-    border-bottom: 2px solid #4169E1;
+    color: #5350C4;
+    border-bottom: 2px solid #5350C4;
 }
 
 /* Auth forms */
@@ -151,7 +151,7 @@ body {
 
 .input-with-icon input:focus {
     outline: none;
-    border-color: #4169E1;
+    border-color: #5350C4;
 }
 
 .form-options {
@@ -161,29 +161,10 @@ body {
     margin-bottom: 25px;
 }
 
-.remember-me {
-    display: flex;
-    align-items: center;
-}
-
-.remember-me input {
-    margin-right: 8px;
-}
-
-.forgot-password {
-    color: #4169E1;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.forgot-password:hover {
-    text-decoration: underline;
-}
-
 .auth-button {
     width: 100%;
     padding: 12px;
-    background-color: #4169E1;
+    background-color: #5350C4;
     color: white;
     border: none;
     border-radius: 5px;
@@ -194,28 +175,7 @@ body {
 }
 
 .auth-button:hover {
-    background-color: #3a5dcc;
-}
-
-.terms-agreement {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 25px;
-    font-size: 14px;
-}
-
-.terms-agreement input {
-    margin-right: 8px;
-    margin-top: 3px;
-}
-
-.terms-agreement a {
-    color: #4169E1;
-    text-decoration: none;
-}
-
-.terms-agreement a:hover {
-    text-decoration: underline;
+    background-color: #413e92;
 }
 
 .error-message {

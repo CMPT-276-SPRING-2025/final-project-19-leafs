@@ -10,7 +10,12 @@ body {
     background-color: #f8f9fa;
     color: #333;
 }
-
+h4{
+    gap: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /* Main container */
 .saved-flights-page {
     position: relative;
@@ -23,7 +28,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: #4169E1;
+    background-color: #5350C4;
     color: white;
 }
 
@@ -46,16 +51,19 @@ body {
 .back-button i {
     margin-right: 8px;
 }
-.search-bar {
+.search-button-white{
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-color: white;
-    border-radius: 50px;
-    padding: 8px 15px;
-    width: 100%;
-    max-width: 800px;
-  }
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    opacity: 100%;
+}
   
 .search-icon {
   color: #666;
@@ -98,7 +106,7 @@ body {
     overflow: hidden;
     margin-bottom: 20px;
     background-color: #f0f0f0;
-    border: 3px solid #4169E1;
+    border: 3px solid #5350C4;
 }
 
 .profile-avatar img {
@@ -131,7 +139,7 @@ body {
 
 .logout-button {
     margin-top: 20px;
-    background-color: #333;
+    background-color: #5350C4;
     color: white;
     border: none;
     padding: 8px 20px;
@@ -142,7 +150,7 @@ body {
 }
 
 .logout-button:hover {
-    background-color: #555;
+    background-color: #413e92;
 }
 
 /* Flights Section */
@@ -172,6 +180,7 @@ body {
     border-radius: 10px;
     border: 1px solid #e0e0e0;
     width: 100%;
+    align-content: center;
 }
 
 .flight-details {
@@ -179,21 +188,25 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 20px;;
 }
 
 .flight-leg {
     display: flex;
-    gap: 10px; /* Reduce the gap between columns */
+    gap: 4.5rem; /* Reduce the gap between columns */
     align-items: center; /* Vertically align items */
     white-space: nowrap; /* Prevent text wrapping */
     width: 100%;
+    
 }
 
 .airline {
     width: 100px;
     display: flex;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .airline-logo {
@@ -206,6 +219,9 @@ body {
     flex-direction: column;
     align-items: flex-start; /* Align text to the left */
     min-width: 0; /* Prevent overflowing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .time {
@@ -215,6 +231,9 @@ body {
 
 .city {
     font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .flight-path {
@@ -265,48 +284,30 @@ body {
     margin-top: 10px;
 }
 
-.details-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #f0f0f0;
-    border: none;
-    padding: 8px 15px;
+.details-button, .favorite-button {
+    background: #eee;
+    border: 1px solid #ccc;
     border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
-}
-
-.details-button:hover {
-    background-color: #e0e0e0;
-}
+    margin-right: 4px;
+  }
 
 .favorite-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.favorite-button i {
-    color: #ddd;
-    font-size: 18px;
-}
-
-.favorite-button.active i {
-    color: #ff6b6b;
-}
-
-.favorite-button:hover {
-    background-color: #f8f8f8;
-}
+    font-size: 23px;
+    color: #ffffff;
+    background: #dfdfdf;
+    border: 1px solid #000000;
+    transition: color 0.3s ease;
+    
+  }
+  
+  .favorite-button.liked {
+    color: red;
+    background: #dfdfdf;
+    border: 1px solid #000000;
+  }
 
 /* Flight Price */
 .flight-price {
@@ -345,7 +346,6 @@ body {
 .price-value {
     font-size: 28px;
     font-weight: 700;
-    color: #4caf50;
 }
 
 .price-comparison {
@@ -440,7 +440,7 @@ body {
 }
 
 .modal-actions .btn.confirm {
-    background-color: #4169E1;
+    background-color: #5350C4;
     color: white;
 }
 

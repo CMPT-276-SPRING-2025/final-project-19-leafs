@@ -26,7 +26,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('plane-img.png');
+    background-image: url('../assets/plane-img.png');
     background-size: cover;
     background-position: center;
     z-index: -1;
@@ -39,7 +39,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: #4169E1;
+    background-color: #5350C4;
     color: white;
 }
 .search-bar {
@@ -173,7 +173,7 @@ input, select {
 }
 
 .swap-button:hover {
-    background-color: #f8f8f8;
+    background-color: #959595;
     transform: scale(1.05);
 }
 
@@ -258,7 +258,7 @@ input, select {
 }
 
 .counter button:hover {
-    background-color: #000000;
+    background-color: #413e92;
     opacity: 100%;
     color: #ffffff;
 
@@ -272,7 +272,7 @@ input, select {
 
 }
 
-.date-input {
+.date-input, .return-date-input {
     position: relative;
     opacity: 100%;
     margin: 8px 0 8px 0;
@@ -280,22 +280,22 @@ input, select {
 
 .date-input input {
     width: 100%;
-    padding-right: 40px;
     opacity: 100%;
+    font-size: 16px;
 
 }
-
-.date-input i {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #666;
-    pointer-events: none;
+.return-date-input input {
+    width: 100%;
     opacity: 100%;
+    font-size: 16px;
 
 }
-
+/* Disabled input styling */
+input[disabled] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    color: #666666;
+}
 /* Search button */
 .search-button-container {
     display: flex;
@@ -303,12 +303,25 @@ input, select {
     opacity: 100%;
 
 }
+.search-button-white{
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    opacity: 100%;
+}
 
 .search-button {
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: #4169E1;
+    background-color: #5350C4;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -321,38 +334,11 @@ input, select {
 }
 
 .search-button:hover {
-    background-color: #333;
+    background-color: #413e92;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     opacity: 100%;
 
-}
-
-/* Chat box */
-.chat-box {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-}
-
-.chat-box button {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: #4169E1;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.chat-box button:hover {
-    background-color: #333;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive adjustments */
