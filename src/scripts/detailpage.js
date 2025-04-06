@@ -9,28 +9,35 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    // Extract flight details
+    const segments = selectedFlight.itineraries[0].segments;
+    const numberOfStops = segments.length - 1; // Calculate the number of stops
+    const carrierCode = segments[0].carrierCode; // Extract carrier code
+    const flightNumber = segments[0].number; // Extract flight number
+    const airlineCodeAndNumber = `${carrierCode}${flightNumber}`; // Combine airline code and flight number
+
     // Populate the flight details in the header card
     const flightRouteElement = document.querySelector('.flight-route');
     const flightDateElement = document.querySelector('.flight-date');
     const timeNoteElement = document.querySelector('.time-note');
 
     flightRouteElement.innerHTML = `
-        <strong>${selectedFlight.itineraries[0].segments[0].departure.iataCode}</strong>
+        <strong>${segments[0].departure.iataCode}</strong>
         <span class="route-line-arrow"></span>
-        <strong>${selectedFlight.itineraries[0].segments.slice(-1)[0].arrival.iataCode}</strong>
+        <strong>${segments.slice(-1)[0].arrival.iataCode}</strong>
     `;
-    flightDateElement.textContent = new Date(selectedFlight.itineraries[0].segments[0].departure.at).toDateString();
+    flightDateElement.textContent = new Date(segments[0].departure.at).toDateString();
     timeNoteElement.textContent = "All times are local";
 
     // Populate the flight details in the main card
     const flightDetailsElement = document.querySelector('.flight-details');
     flightDetailsElement.innerHTML = `
         <div>
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/WestJet_logo_2016.svg/320px-WestJet_logo_2016.svg.png" alt="Airline Logo" width="70"/>
+            <strong><div class="airline-name">${airlineCodeAndNumber}</div></strong> <!-- Display airline code and flight number -->
         </div>
         <div>
-            <div>${new Date(selectedFlight.itineraries[0].segments[0].departure.at).toLocaleTimeString()}</div>
-            <div>${selectedFlight.itineraries[0].segments[0].departure.iataCode}</div>
+            <div>${new Date(segments[0].departure.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+            <div>${segments[0].departure.iataCode}</div>
         </div>
         <div>
             <div>Flight Hours: ${selectedFlight.itineraries[0].duration.replace('PT', '').toLowerCase()}</div>
@@ -38,11 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <line x1="0" y1="1" x2="190" y2="1" stroke="black" stroke-width="2"/>
                 <polyline points="190,0 200,1 190,2" fill="none" stroke="black" stroke-width="2"/>
             </svg></div>
-            <div>Direct</div>
+            <div>${numberOfStops === 0 ? "Direct" : `${numberOfStops} Stop${numberOfStops > 1 ? "s" : ""}`}</div>
         </div>
         <div>
-            <div>${new Date(selectedFlight.itineraries[0].segments.slice(-1)[0].arrival.at).toLocaleTimeString()}</div>
-            <div>${selectedFlight.itineraries[0].segments.slice(-1)[0].arrival.iataCode}</div>
+            <div>${new Date(segments.slice(-1)[0].arrival.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+            <div>${segments.slice(-1)[0].arrival.iataCode}</div>
         </div>
     `;
 
@@ -54,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <i class="fa-solid fa-heart"></i>
             <div style="font-weight: bold; margin-top: 0%; padding: 9px;">Add to saved flights</div>
         </button>     
-        <button class="book-btn">Book on Airline website</button>
+        <!--<button class="book-btn">Book on Airline website</button>-->
     `;
 
     // Handle the favorite button
@@ -90,20 +97,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const wsHeaderElement = document.querySelector('.ws-header');
     const wsBodyElement = document.querySelector('.ws-body');
 
-    wsHeaderElement.innerHTML = `<strong>${selectedFlight.itineraries[0].segments[0].carrierCode} ${selectedFlight.itineraries[0].segments[0].flightNumber}</strong>`;
+    wsHeaderElement.innerHTML = `<strong>${airlineCodeAndNumber}</strong>`; // Display airline code and flight number
     wsBodyElement.innerHTML = `
         <div class="ws-time-column">
-            <div>${new Date(selectedFlight.itineraries[0].segments[0].departure.at).toLocaleTimeString()}</div>
+            <div>${new Date(segments[0].departure.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
             <div class="down-arrow-line"></div>
-            <div>${new Date(selectedFlight.itineraries[0].segments.slice(-1)[0].arrival.at).toLocaleTimeString()}</div>
+            <div>${new Date(segments.slice(-1)[0].arrival.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
         </div>            
         <div class="ws-airport-column">
-            <div>${selectedFlight.itineraries[0].segments[0].departure.iataCode} International Airport</div>
-            <div>${selectedFlight.itineraries[0].segments.slice(-1)[0].arrival.iataCode} International Airport</div>
+            <div>${segments[0].departure.iataCode} International Airport</div>
+            <div>${segments.slice(-1)[0].arrival.iataCode} International Airport</div>
         </div>
         <div class="ws-meta-column">
-            <div>Arrives: <strong>${new Date(selectedFlight.itineraries[0].segments.slice(-1)[0].arrival.at).toDateString()}</strong></div>
+            <div>Arrives: <strong>${new Date(segments.slice(-1)[0].arrival.at).toDateString()}</strong></div>
             <div>Flight hours: ${selectedFlight.itineraries[0].duration.replace('PT', '').toLowerCase()}</div>
+            <div>${numberOfStops === 0 ? "Direct Flight" : `${numberOfStops} Stop${numberOfStops > 1 ? "s" : ""}`}</div>
         </div>
     `;
 

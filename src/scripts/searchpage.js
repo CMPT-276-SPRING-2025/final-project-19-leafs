@@ -144,9 +144,25 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add click event listeners to all Details buttons
     document.querySelectorAll('.details-button').forEach((button, index) => {
         button.addEventListener('click', function () {
-            // Save the selected flight offer to localStorage
+            // Extract the selected flight offer
             const selectedFlight = flightOffers.data[index];
-            localStorage.setItem('selectedFlight', JSON.stringify(selectedFlight));
+            const segments = selectedFlight.itineraries[0].segments;
+
+            // Extract stop information
+            const stops = segments.slice(1, -1).map(segment => ({
+                airport: segment.departure.iataCode,
+                arrivalTime: segment.arrival.at,
+                departureTime: segment.departure.at
+            }));
+
+            // Add stop information to the selected flight object
+            const flightWithStops = {
+                ...selectedFlight,
+                stops
+            };
+
+            // Save the selected flight with stops to localStorage
+            localStorage.setItem('selectedFlight', JSON.stringify(flightWithStops));
 
             // Navigate to the detail page
             window.location.href = 'detailpage.html';
