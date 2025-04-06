@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to get the access token
     async function getAccessToken() {
-        const response = await fetch("/.netlify/functions/getAccessToken");
-        const data = await response.json();
-        return data.access_token; // Return the token for further API calls
-    }
-    
+    const response = await fetch("/.netlify/functions/getAccessToken");
+    const data = await response.json();
+    return data.access_token; // Return the token for further API calls
+}
 
     // Function to fetch flight status data
     const fetchFlightStatus = async (carrierCode, flightNumber, departureDate) => {

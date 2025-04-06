@@ -4,6 +4,8 @@ body {
     padding: 0;
     background: linear-gradient(#EEEEFF, #CBC7FF);
     color: #333;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .header {
@@ -69,7 +71,7 @@ body {
     font-size: 12px;
     color: #666;
 }
-.main-content {
+.status-main-content {
     max-width: 600px;
     margin: 40px auto;
     padding: 20px;
@@ -78,8 +80,8 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.form-group {
-    margin-bottom: 20px;
+.status-form-group {
+    margin: 0 20px 20px 0;
 }
 
 label {
@@ -96,7 +98,7 @@ input {
     font-size: 16px;
 }
 
-.search-button {
+.status-search-button {
     width: 100%;
     padding: 12px;
     background-color: #5350C4;
@@ -108,7 +110,7 @@ input {
     transition: background-color 0.3s;
 }
 
-.search-button:hover {
+.status-search-button:hover {
     background-color: #413e92;
 }
 
