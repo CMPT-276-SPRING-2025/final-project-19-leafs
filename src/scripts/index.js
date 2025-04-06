@@ -208,13 +208,6 @@ function validateInputs(origin, destination, departureDate, returnDate, adults, 
         isValid = false;
     }
 
-    // Validate "Class" field
-    const travelClass = document.getElementById('class').value;
-    if (!travelClass || travelClass === "Select") {
-        showError('class', 'Please select a travel class.');
-        isValid = false;
-    }
-
     // Validate "Departure Date" field
     if (!departureDate) {
         showError('departure', 'This field is required.');
@@ -222,11 +215,10 @@ function validateInputs(origin, destination, departureDate, returnDate, adults, 
     }
 
     // Validate "Return Date" field if round trip is selected
-    if (tripType === 'round-trip' && !returnDate) {
-        showError('return', 'This field is required for round trips.');
+    if (!returnDate) {
+        showError('return', 'Return date is required for round trips.');
         isValid = false;
     }
-
     // Validate "Adults" field
     if (adults + children < 1) {
         alert('At least one passenger is required.');
