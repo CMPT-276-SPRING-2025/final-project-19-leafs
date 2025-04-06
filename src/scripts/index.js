@@ -116,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             destinationLocationCode: destination,
                             departureDateTimeRange: {
                                 date: departureDate,
-                                time: "10:00:00" // Default time
                             }
                         }
                     ],
@@ -150,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         destinationLocationCode: origin,
                         departureDateTimeRange: {
                             date: returnDate,
-                            time: "10:00:00" // Default time
                         }
                     });
                 }
