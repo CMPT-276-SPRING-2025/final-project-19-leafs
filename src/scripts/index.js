@@ -67,7 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const loadingIndicator = document.getElementById('loading-indicator'); // Loading indicator element
 
     if (searchButton) {
-        searchButton.addEventListener('click', async function () {
+        searchButton.addEventListener('click', async function (e) {
+            e.preventDefault(); // Prevent form submission
+
             // Collect user inputs from the form
             const origin = document.getElementById('from').value.trim(); // Origin location
             const destination = document.getElementById('to').value.trim(); // Destination location
@@ -75,12 +77,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const returnDate = returnDateInput.value; // Return date (optional)
             const adults = parseInt(document.getElementById('adult-count').textContent, 10); // Number of adults
             const children = parseInt(document.getElementById('children-count').textContent, 10) || 0; // Number of children
-            const travelClass = document.getElementById('class').value.toUpperCase(); // Travel class
+            const tripType = tripTypeSelect.value; // Trip type (One Way or Round Trip)
 
             // Validate inputs
-            if (!origin || !destination || !departureDate || adults < 1 || !tripTypeSelect.value) {
-                alert('Please fill in all required fields.');
-                return;
+            if (!validateInputs(origin, destination, departureDate, returnDate, adults, tripType)) {
+                return; // Stop execution if validation fails
             }
 
             // Clear only previous search data, not the login info
@@ -91,12 +92,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const userChoices = {
                 origin,
                 destination,
-                tripType: tripTypeSelect.value, // Add trip type to user choices
+                tripType, // Add trip type to user choices
                 departureDate,
                 returnDate,
                 adults,
                 children,
-                travelClass
+                travelClass: document.getElementById('class').value.toUpperCase() // Travel class
             };
             localStorage.setItem('userChoices', JSON.stringify(userChoices));
 
@@ -132,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         flightFilters: {
                             cabinRestrictions: [
                                 {
-                                    cabin: travelClass,
+                                    cabin: userChoices.travelClass,
                                     coverage: "MOST_SEGMENTS",
                                     originDestinationIds: ["1"]
                                 }
@@ -187,6 +188,72 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// Function to validate inputs
+function validateInputs(origin, destination, departureDate, returnDate, adults, children, tripType) {
+    let isValid = true;
+
+    // Clear previous error messages
+    document.querySelectorAll(".error-message").forEach((error) => (error.textContent = ""));
+
+    // Validate "From" field
+    if (!origin) {
+        showError('from', 'This field is required.');
+        isValid = false;
+    }
+
+    // Validate "To" field
+    if (!destination) {
+        showError('to', 'This field is required.');
+        isValid = false;
+    }
+
+    // Validate "Trip Type" field
+    if (!tripType || tripType === "Select") {
+        showError('trip-type', 'Please select a trip type.');
+        isValid = false;
+    }
+
+    // Validate "Class" field
+    const travelClass = document.getElementById('class').value;
+    if (!travelClass || travelClass === "Select") {
+        showError('class', 'Please select a travel class.');
+        isValid = false;
+    }
+
+    // Validate "Departure Date" field
+    if (!departureDate) {
+        showError('departure', 'This field is required.');
+        isValid = false;
+    }
+
+    // Validate "Return Date" field if round trip is selected
+    if (tripType === 'round-trip' && !returnDate) {
+        showError('return', 'This field is required for round trips.');
+        isValid = false;
+    }
+
+    // Validate "Adults" field
+    if (adults + children < 1) {
+        alert('At least one passenger is required.');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+// Function to show error message
+function showError(inputId, message) {
+    const inputElement = document.getElementById(inputId);
+    const errorMessage = inputElement.nextElementSibling || document.createElement("div");
+    errorMessage.className = "error-message";
+    errorMessage.textContent = message;
+    errorMessage.style.color = "red";
+    errorMessage.style.fontSize = "12px";
+    errorMessage.style.marginTop = "5px";
+    inputElement.parentElement.appendChild(errorMessage);
+}
+
 
 // Function to get the access token
 async function getAccessToken() {
