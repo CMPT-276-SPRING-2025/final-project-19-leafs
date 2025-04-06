@@ -46,6 +46,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Handle trip type selection
+    const tripTypeSelect = document.getElementById('trip-type');
+    const returnDateInput = document.getElementById('return');
+
+    // Add event listener to trip type dropdown
+    tripTypeSelect.addEventListener('change', function () {
+        if (tripTypeSelect.value === 'one-way') {
+            // Clear and disable the return date input for one-way trips
+            returnDateInput.value = ''; // Clear the return date
+            returnDateInput.setAttribute('disabled', 'true'); // Disable the input
+        } else {
+            // Enable the return date input for round trips
+            returnDateInput.removeAttribute('disabled');
+        }
+    });
+
     // Handle flight search
     const searchButton = document.querySelector('.search-button'); // Search button in the form
     const loadingIndicator = document.getElementById('loading-indicator'); // Loading indicator element
@@ -56,17 +72,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const origin = document.getElementById('from').value.trim(); // Origin location
             const destination = document.getElementById('to').value.trim(); // Destination location
             const departureDate = document.getElementById('departure').value; // Departure date
-            const returnDate = document.getElementById('return').value; // Return date (optional)
+            const returnDate = returnDateInput.value; // Return date (optional)
             const adults = parseInt(document.getElementById('adult-count').textContent, 10); // Number of adults
             const children = parseInt(document.getElementById('children-count').textContent, 10) || 0; // Number of children
             const travelClass = document.getElementById('class').value.toUpperCase(); // Travel class
 
             // Validate inputs
-            if (!origin || !destination || !departureDate || adults < 1) {
+            if (!origin || !destination || !departureDate || adults < 1 || !tripTypeSelect.value) {
                 alert('Please fill in all required fields.');
                 return;
             }
-            
+
             // Clear only previous search data, not the login info
             localStorage.removeItem('userChoices'); // Remove previous user choices
             localStorage.removeItem('flightOffers'); // Remove previous flight offers
@@ -75,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const userChoices = {
                 origin,
                 destination,
+                tripType: tripTypeSelect.value, // Add trip type to user choices
                 departureDate,
                 returnDate,
                 adults,
@@ -82,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 travelClass
             };
             localStorage.setItem('userChoices', JSON.stringify(userChoices));
+
             // Show the loading indicator
             loadingIndicator.classList.add('visible');
             try {

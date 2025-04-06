@@ -272,7 +272,7 @@ input, select {
 
 }
 
-.date-input {
+.date-input, .return-date-input {
     position: relative;
     opacity: 100%;
     margin: 8px 0 8px 0;
@@ -283,6 +283,18 @@ input, select {
     opacity: 100%;
     font-size: 16px;
 
+}
+.return-date-input input {
+    width: 100%;
+    opacity: 100%;
+    font-size: 16px;
+
+}
+/* Disabled input styling */
+input[disabled] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    color: #666666;
 }
 /* Search button */
 .search-button-container {
