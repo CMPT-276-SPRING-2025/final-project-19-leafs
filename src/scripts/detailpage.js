@@ -129,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <i class="fa-solid fa-heart"></i>
           <div style="font-weight: bold; margin-top: 0%; padding: 9px;">Add to saved flights</div>
       </button>     
-      <button class="book-btn">Book on Airline website</button>
   `
   
     // Handle the favorite button
