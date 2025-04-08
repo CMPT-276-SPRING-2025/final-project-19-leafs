@@ -291,6 +291,11 @@ select {
   opacity: 100%;
   font-size: 16px;
 }
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
 /* Disabled input styling */
 input[disabled] {
   background-color: #f5f5f5;
