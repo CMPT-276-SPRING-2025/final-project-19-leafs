@@ -162,6 +162,7 @@
               <div class="return-date-input">
                 <input type="date" id="return" placeholder="YYYY-MM-DD" />
               </div>
+              <div id="error-container" class="error-message"></div>
             </div>
           </div>
 
@@ -276,7 +277,12 @@
         </div>
       </div>
     </div>
-
+    <div id="error-modal" class="modal">
+      <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <p id="modal-message">An error occurred.</p>
+      </div>
+    </div>
     <!-- Link to external JavaScript file -->
     <!--    <script src="../config.js"></script> -->
 
@@ -330,15 +336,25 @@
           }
         });
 
-        // Prevent selecting past dates for the return date
-        returnInput.addEventListener("click", function () {
-          const departureDate = departureInput.value;
-          if (!departureDate) {
-            alert("Please select a departure date first.");
-            departureInput.focus();
-          }
-        });
-      });
+    // Prevent selecting past dates for the return date
+    returnInput.addEventListener("click", function () {
+      const departureDate = departureInput.value;
+      const errorContainer = document.getElementById("error-container");
+
+      if (!departureDate) {
+        if (errorContainer) {
+          errorContainer.textContent = "Please select a departure date first.";
+          errorContainer.style.color = "red";
+          errorContainer.style.marginTop = "10px";
+        }
+        departureInput.focus();
+      } else {
+        if (errorContainer) {
+          errorContainer.textContent = "";
+        }
+      }
+    });
+  });
     </script>
   </body>
 </html>

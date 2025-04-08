@@ -18,6 +18,18 @@ function incrementCount(id) {
 function decrementCount(id) {
   const countElement = document.getElementById(id);
   let count = parseInt(countElement.textContent);
+
+  if (id === "adult-count") {
+    const childrenCount = parseInt(
+      document.getElementById("children-count").textContent
+    );
+
+    // Prevent adults from going below 1 if children count is 0
+    if (childrenCount === 0 && count <= 1) {
+      return; // Do nothing if the condition is met
+    }
+  }
+
   if (count > 0) {
     countElement.textContent = count - 1;
   }
@@ -248,10 +260,8 @@ function validateInputs(
   }
   // Validate "Adults" field
   if (adults + children < 1) {
-    alert("At least one passenger is required.");
     isValid = false;
   }
-
   return isValid;
 }
 
