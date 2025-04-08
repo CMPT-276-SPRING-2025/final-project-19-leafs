@@ -260,10 +260,8 @@ function validateInputs(
   }
   // Validate "Adults" field
   if (adults + children < 1) {
-    alert("At least one passenger is required.");
     isValid = false;
   }
-
   return isValid;
 }
 
