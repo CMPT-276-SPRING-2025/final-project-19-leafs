@@ -51,6 +51,16 @@ h4{
 .back-button i {
     margin-right: 8px;
 }
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    max-width:125px; /* Adjust size as needed */
+    height: auto;
+}
 .search-button-white{
     display: flex;
     align-items: center;

@@ -35,7 +35,16 @@ body {
 .back-button i {
   margin-right: 8px;
 }
-  
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    max-width:125px; /* Adjust size as needed */
+    height: auto;
+}
 .user-profile {
     display: flex;
     align-items: center;

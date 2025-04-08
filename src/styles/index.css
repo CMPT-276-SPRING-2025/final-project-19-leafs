@@ -42,6 +42,16 @@ body {
     background-color: #5350C4;
     color: white;
 }
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    max-width:125px; /* Adjust size as needed */
+    height: auto;
+}
 .search-bar {
     display: flex;
     align-items: center;
