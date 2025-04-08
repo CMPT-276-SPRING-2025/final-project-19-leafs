@@ -18,6 +18,18 @@ function incrementCount(id) {
 function decrementCount(id) {
   const countElement = document.getElementById(id);
   let count = parseInt(countElement.textContent);
+
+  if (id === "adult-count") {
+    const childrenCount = parseInt(
+      document.getElementById("children-count").textContent
+    );
+
+    // Prevent adults from going below 1 if children count is 0
+    if (childrenCount === 0 && count <= 1) {
+      return; // Do nothing if the condition is met
+    }
+  }
+
   if (count > 0) {
     countElement.textContent = count - 1;
   }
@@ -198,28 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "searchpage.html";
       } catch (error) {
         console.error("Error fetching flight offers:", error);
-      
-        // Display the error modal
-        const modal = document.getElementById("error-modal");
-        const modalMessage = document.getElementById("modal-message");
-        const closeModal = document.getElementById("close-modal");
-      
-        if (modal && modalMessage) {
-          modalMessage.textContent = "Failed to fetch flight offers. Please try again later.";
-          modal.style.display = "block";
-      
-          // Close the modal when the close button is clicked
-          closeModal.addEventListener("click", function () {
-            modal.style.display = "none";
-          });
-      
-          // Close the modal when clicking outside the modal content
-          window.addEventListener("click", function (event) {
-            if (event.target === modal) {
-              modal.style.display = "none";
-            }
-          });
-        }
+        alert("Failed to fetch flight offers. Please try again later.");
       } finally {
         // Hide the loading indicator
         loadingIndicator.classList.remove("visible");
