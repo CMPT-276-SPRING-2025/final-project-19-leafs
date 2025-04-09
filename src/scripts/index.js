@@ -238,7 +238,60 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+document.addEventListener("DOMContentLoaded", function () {
+  // Existing code...
 
+  const fromInput = document.getElementById("from");
+  const toInput = document.getElementById("to");
+
+  // Function to validate IATA code input
+  function validateIATACode(inputId) {
+    const inputElement = document.getElementById(inputId);
+    const errorMessage =
+      inputElement.nextElementSibling || document.createElement("div");
+
+    // Clear previous error message
+    errorMessage.className = "error-message";
+    errorMessage.textContent = "";
+    errorMessage.style.color = "red";
+    errorMessage.style.fontSize = "12px";
+    errorMessage.style.marginTop = "5px";
+
+    // Validate input
+    const value = inputElement.value.trim();
+    const isValid = /^[A-Z]{3}$/.test(value); // Regex for 3 uppercase letters
+
+    if (!isValid) {
+      errorMessage.textContent =
+        "Please enter a valid 3-letter airport IATA code (e.g., JFK, LAX).";
+      inputElement.parentElement.appendChild(errorMessage);
+    } else {
+      // Remove error message if valid
+      if (errorMessage.parentElement) {
+        errorMessage.parentElement.removeChild(errorMessage);
+      }
+    }
+
+    return isValid;
+  }
+
+  // Convert input to uppercase while typing and validate
+  [fromInput, toInput].forEach((input) => {
+    input.addEventListener("input", function () {
+      input.value = input.value.toUpperCase(); // Convert to uppercase
+      validateIATACode(input.id); // Validate input
+    });
+  });
+
+  // Validate on blur (when the user leaves the input field)
+  [fromInput, toInput].forEach((input) => {
+    input.addEventListener("blur", function () {
+      validateIATACode(input.id);
+    });
+  });
+
+  // Existing code...
+});
 // Function to validate inputs
 function validateInputs(
   origin,
