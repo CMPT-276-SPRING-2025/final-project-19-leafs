@@ -209,8 +209,28 @@ document.addEventListener("DOMContentLoaded", function () {
         // Redirect to the search page
         window.location.href = "searchpage.html";
       } catch (error) {
-        console.error("Error fetching flight offers:", error);
-        alert("Failed to fetch flight offers. Please try again later.");
+            
+        // Display the error modal
+        const modal = document.getElementById("error-modal");
+        const modalMessage = document.getElementById("modal-message");
+        const closeModal = document.getElementById("close-modal");
+      
+        if (modal && modalMessage) {
+          modalMessage.textContent = "Failed to fetch flight offers. Please try again later.";
+          modal.style.display = "block";
+      
+          // Close the modal when the close button is clicked
+          closeModal.addEventListener("click", function () {
+            modal.style.display = "none";
+          });
+      
+          // Close the modal when clicking outside the modal content
+          window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+              modal.style.display = "none";
+            }
+          });
+        }
       } finally {
         // Hide the loading indicator
         loadingIndicator.classList.remove("visible");
