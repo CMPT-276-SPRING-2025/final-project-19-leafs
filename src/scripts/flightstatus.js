@@ -144,3 +144,79 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+// Array of supported airlines with their IATA codes
+const supportedAirlines = [
+  { name: "American Airlines", code: "AA" },
+  { name: "United Airlines", code: "UA" },
+  { name: "Delta Air Lines", code: "DL" },
+  { name: "Lufthansa", code: "LH" },
+  { name: "British Airways", code: "BA" },
+  { name: "Air France", code: "AF" },
+  { name: "KLM Royal Dutch Airlines", code: "KL" },
+  { name: "Emirates", code: "EK" },
+  { name: "Qatar Airways", code: "QR" },
+  { name: "Singapore Airlines", code: "SQ" },
+  { name: "Turkish Airlines", code: "TK" },
+  { name: "Japan Airlines", code: "JL" },
+  { name: "ANA (All Nippon Airways)", code: "NH" },
+  { name: "Swiss International Air Lines", code: "LX" },
+  { name: "Air India", code: "AI" }
+];
+
+// Function to create the supported airlines section
+function createSupportedAirlinesSection() {
+  const container = document.getElementById('supported-airlines-container');
+  
+  if (!container) return;
+  
+  // Create the HTML structure
+  container.innerHTML = `
+    <div class="supported-airlines-container">
+      <div class="supported-airlines-header" id="supported-airlines-toggle">
+        <h3>Some Supported Airlines <i class="fa-solid fa-chevron-down"></i></h3>
+      </div>
+      <div class="supported-airlines-content" id="supported-airlines-list">
+        <ul class="airlines-list" id="airlines-list"></ul>
+      </div>
+    </div>
+  `;
+  
+  // Populate the airlines list
+  const airlinesList = document.getElementById('airlines-list');
+  
+  supportedAirlines.forEach(airline => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `<span class="airline-code" data-code="${airline.code}">${airline.code}</span> ${airline.name}`;
+    airlinesList.appendChild(listItem);
+  });
+  
+  // Add toggle functionality
+  const toggleButton = document.getElementById('supported-airlines-toggle');
+  toggleButton.addEventListener('click', function() {
+    const airlinesList = document.getElementById('supported-airlines-list');
+    const chevron = this.querySelector('i');
+    
+    if (airlinesList.classList.contains('expanded')) {
+      airlinesList.classList.remove('expanded');
+      chevron.classList.remove('fa-chevron-up');
+      chevron.classList.add('fa-chevron-down');
+    } else {
+      airlinesList.classList.add('expanded');
+      chevron.classList.remove('fa-chevron-down');
+      chevron.classList.add('fa-chevron-up');
+    }
+  });
+  
+  // Make airline codes clickable
+  document.querySelectorAll('.airline-code').forEach(codeElement => {
+    codeElement.addEventListener('click', function() {
+      const code = this.getAttribute('data-code');
+      document.getElementById('carrier-code').value = code;
+    });
+  });
+}
+
+// Initialize the supported airlines section when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  createSupportedAirlinesSection();
+});

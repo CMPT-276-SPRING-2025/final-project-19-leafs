@@ -41,7 +41,7 @@
           <input
             type="text"
             id="carrier-code"
-            placeholder="e.g., TP"
+            placeholder="e.g., SQ"
             required
           />
         </div>
@@ -50,7 +50,7 @@
           <input
             type="text"
             id="flight-number"
-            placeholder="e.g., 487"
+            placeholder="e.g., 26"
             required
           />
         </div>
@@ -62,8 +62,13 @@
           Search Flight
         </button>
       </form>
+      
+      <!-- Supported Airlines Section - Will be populated by JavaScript -->
+      <div id="supported-airlines-container"></div>
+      
       <div id="flight-status-results" class="results-container"></div>
     </main>
+    <script src="scripts/airlines.js"></script>
     <script src="scripts/flightstatus.js"></script>
     <script>
       // Check if user is logged in
