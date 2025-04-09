@@ -239,58 +239,96 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 document.addEventListener("DOMContentLoaded", function () {
-  // Existing code...
-
+  // IATA code validation
   const fromInput = document.getElementById("from");
   const toInput = document.getElementById("to");
+  const searchButton = document.querySelector(".search-button");
 
-  // Function to validate IATA code input
-  function validateIATACode(inputId) {
-    const inputElement = document.getElementById(inputId);
-    const errorMessage =
-      inputElement.nextElementSibling || document.createElement("div");
-
-    // Clear previous error message
-    errorMessage.className = "error-message";
-    errorMessage.textContent = "";
-    errorMessage.style.color = "red";
-    errorMessage.style.fontSize = "12px";
-    errorMessage.style.marginTop = "5px";
-
-    // Validate input
-    const value = inputElement.value.trim();
-    const isValid = /^[A-Z]{3}$/.test(value); // Regex for 3 uppercase letters
-
-    if (!isValid) {
-      errorMessage.textContent =
-        "Please enter a valid 3-letter airport IATA code (e.g., JFK, LAX).";
-      inputElement.parentElement.appendChild(errorMessage);
-    } else {
-      // Remove error message if valid
-      if (errorMessage.parentElement) {
-        errorMessage.parentElement.removeChild(errorMessage);
-      }
-    }
-
-    return isValid;
+  // IATA validation function - requires exactly 3 uppercase letters
+  function validateIATACode(code) {
+    const iataPattern = /^[A-Z]{3}$/;
+    return iataPattern.test(code);
   }
 
-  // Convert input to uppercase while typing and validate
-  [fromInput, toInput].forEach((input) => {
-    input.addEventListener("input", function () {
-      input.value = input.value.toUpperCase(); // Convert to uppercase
-      validateIATACode(input.id); // Validate input
-    });
+  // Format input and provide visual feedback
+  function formatAndValidateIATA(input) {
+    // Convert to uppercase
+    input.value = input.value.toUpperCase();
+
+    // Check if valid
+    if (input.value.length > 0) {
+      if (validateIATACode(input.value)) {
+        input.style.borderColor = "#4CAF50"; // Green border for valid input
+        input.style.backgroundColor = "rgba(76, 175, 80, 0.1)"; // Light green background
+      } else {
+        input.style.borderColor = "#F44336"; // Red border for invalid input
+        input.style.backgroundColor = "rgba(244, 67, 54, 0.1)"; // Light red background
+      }
+    } else {
+      // Reset styling if empty
+      input.style.borderColor = "";
+      input.style.backgroundColor = "";
+    }
+  }
+
+  // Add input event listeners
+  fromInput.addEventListener("input", function () {
+    formatAndValidateIATA(this);
   });
 
-  // Validate on blur (when the user leaves the input field)
-  [fromInput, toInput].forEach((input) => {
-    input.addEventListener("blur", function () {
-      validateIATACode(input.id);
-    });
+  toInput.addEventListener("input", function () {
+    formatAndValidateIATA(this);
   });
 
-  // Existing code...
+  // Prevent search if IATA codes are invalid
+  searchButton.addEventListener("click", function (e) {
+    const fromValue = fromInput.value;
+    const toValue = toInput.value;
+
+    if (!fromValue || !toValue) {
+      e.preventDefault();
+      showErrorModal("Please enter both origin and destination airport codes.");
+      return;
+    }
+
+    if (!validateIATACode(fromValue) || !validateIATACode(toValue)) {
+      e.preventDefault();
+      showErrorModal(
+        "Please enter valid IATA airport codes (3 uppercase letters) for both origin and destination."
+      );
+
+      // Highlight invalid inputs
+      if (!validateIATACode(fromValue)) {
+        fromInput.style.borderColor = "#F44336";
+        fromInput.style.backgroundColor = "rgba(244, 67, 54, 0.1)";
+      }
+
+      if (!validateIATACode(toValue)) {
+        toInput.style.borderColor = "#F44336";
+        toInput.style.backgroundColor = "rgba(244, 67, 54, 0.1)";
+      }
+    }
+  });
+
+  // Error modal function
+  function showErrorModal(message) {
+    const modal = document.getElementById("error-modal");
+    const modalMessage = document.getElementById("modal-message");
+    const closeModal = document.getElementById("close-modal");
+
+    modalMessage.textContent = message;
+    modal.style.display = "block";
+
+    closeModal.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  }
 });
 // Function to validate inputs
 function validateInputs(
