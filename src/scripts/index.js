@@ -31,7 +31,7 @@ function decrementCount(id) {
 
     // If adults are set to 0, ensure at least 1 child
     if (count === 1 && childrenCount === 0) {
-      adultCountElement.textContent = 1;
+      childrenCountElement.textContent = 1;
     }
   }
 
@@ -39,6 +39,11 @@ function decrementCount(id) {
     // Prevent children from going below 1 if adults count is 0
     if (adultCount === 0 && count <= 1) {
       return; // Do nothing if the condition is met
+    }
+
+    // If children are set to 0, ensure at least 1 adult
+    if (count === 1 && adultCount === 0) {
+      adultCountElement.textContent = 1;
     }
   }
 
