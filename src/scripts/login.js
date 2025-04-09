@@ -77,6 +77,36 @@ function handleLogin() {
   window.location.href = "index.html";
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const passwordInput = document.getElementById("login-password");
+  const showPasswordCheckbox = document.getElementById("show-password");
+
+  showPasswordCheckbox.addEventListener("change", function () {
+    if (showPasswordCheckbox.checked) {
+      passwordInput.type = "text"; // Show password
+    } else {
+      passwordInput.type = "password"; // Hide password
+    }
+  });
+
+  // Show Password functionality for Sign Up
+  const signupPasswordInput = document.getElementById("signup-password");
+  const signupConfirmPasswordInput = document.getElementById("signup-confirm");
+  const showSignupPasswordCheckbox = document.getElementById(
+    "show-signup-password"
+  );
+
+  showSignupPasswordCheckbox.addEventListener("change", function () {
+    if (showSignupPasswordCheckbox.checked) {
+      signupPasswordInput.type = "text"; // Show password
+      signupConfirmPasswordInput.type = "text"; // Show confirm password
+    } else {
+      signupPasswordInput.type = "password"; // Hide password
+      signupConfirmPasswordInput.type = "password"; // Hide confirm password
+    }
+  });
+});
+
 // Handle signup form submission
 function handleSignup() {
   const username = document.getElementById("signup-username").value;
