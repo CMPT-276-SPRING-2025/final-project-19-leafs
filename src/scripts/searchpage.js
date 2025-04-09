@@ -54,25 +54,41 @@ document.addEventListener("DOMContentLoaded", () => {
   // Update the price bar with the cheapest, fastest, and most expensive prices
   const priceRangeContainer = priceBar.querySelector(".price-range-inline");
   priceRangeContainer.innerHTML = `
-          <div style="color: #00cc66; font-weight: bold;">C$${cheapestPrice.toFixed(2)}</div>
+          <div style="color: #00cc66; font-weight: bold;">C$${cheapestPrice.toFixed(2)} per Adult</div>
           <div> - </div>
-          <div style="color: #ff444; font-weight: bold;">C$${mostExpensivePrice.toFixed(2)}</div>
+          <div style="color: #ff444; font-weight: bold;">C$${mostExpensivePrice.toFixed(2)} per Adult </div>
       `;
 
   priceBar.querySelector(".best-price .green").textContent =
-    `C$${cheapestPrice.toFixed(2)}`;
+    `C$${cheapestPrice.toFixed(2)} per Adult`;
   const fastestPriceElement = priceBar.querySelector(".best-price .yellow");
-  fastestPriceElement.textContent = `C$${fastestPrice.toFixed(2)}`;
+  fastestPriceElement.textContent = `C$${fastestPrice.toFixed(2)} per Adult`;
   fastestPriceElement.style.backgroundColor = fastestPriceBackgroundColor; // Set background color
   fastestPriceElement.style.color = "#ffffff"; // Set text color to white
   fastestPriceElement.style.padding = "5px 10px"; // Optional: Add padding for better appearance
   fastestPriceElement.style.borderRadius = "5px"; // Optional: Add rounded corners
+
+  // Calculate total price based on the number of adults and children
+  function calculateTotalPrice(basePrice) {
+    const numAdults = userChoices.adults;
+    const numChildren = userChoices.children;
+
+    // Assuming the API provides the base price for one adult
+    const childDiscount = 0.5; // Example: children pay 50% of the adult price
+    const childPrice = basePrice * childDiscount;
+
+    return (numAdults * basePrice) + (numChildren * childPrice);
+  }
 
   // Render flight offers
   flightResultsContainer.innerHTML = ""; // Clear any existing content
   flightOffers.data.forEach((offer) => {
     const flightCard = document.createElement("div");
     flightCard.classList.add("flight-card");
+
+    // Extract price and calculate total price
+    const basePrice = Number.parseFloat(offer.price.total);
+    const totalPrice = calculateTotalPrice(basePrice);
 
     // Extract outbound itinerary details
     const outboundItinerary = offer.itineraries[0]; // Outbound itinerary
@@ -162,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="flight-price">
           <div class="price-content">
-              <div class="main-price" style="color: ${priceColor};">${currency} ${price.toFixed(2)}</div>
+              <div class="main-price" style="color: ${priceColor};">Total Price: ${currency} ${totalPrice.toFixed(2)}</div>
               <div class="price-actions">
                   <button class="details-button">
                       <a href="detailpage.html">
