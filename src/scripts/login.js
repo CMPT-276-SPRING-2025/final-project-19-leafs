@@ -116,6 +116,9 @@ function handleSignup() {
   const confirmPassword = document.getElementById("signup-confirm").value; // Retrieve confirm password value
   const errorElement = document.getElementById("signup-error");
 
+  // Clear previous error messages
+  errorElement.textContent = "";
+
   // Basic validation
   if (!username || !email || !phone || !password || !confirmPassword) {
     errorElement.textContent = "Please fill in all fields";
@@ -124,6 +127,27 @@ function handleSignup() {
 
   if (password !== confirmPassword) {
     errorElement.textContent = "Passwords do not match";
+    return;
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    errorElement.textContent = "Please enter a valid email address.";
+    return;
+  }
+
+  // Validate phone number (digits only, 10-15 characters)
+  const phoneRegex = /^\d{10,15}$/;
+  if (!phoneRegex.test(phone)) {
+    errorElement.textContent =
+      "Please enter a valid phone number (10-15 digits).";
+    return;
+  }
+
+  // Validate password length
+  if (password.length < 6) {
+    errorElement.textContent = "Password must be at least 6 characters long.";
     return;
   }
 
