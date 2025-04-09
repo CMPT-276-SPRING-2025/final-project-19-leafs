@@ -77,6 +77,36 @@ function handleLogin() {
   window.location.href = "index.html";
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const passwordInput = document.getElementById("login-password");
+  const showPasswordCheckbox = document.getElementById("show-password");
+
+  showPasswordCheckbox.addEventListener("change", function () {
+    if (showPasswordCheckbox.checked) {
+      passwordInput.type = "text"; // Show password
+    } else {
+      passwordInput.type = "password"; // Hide password
+    }
+  });
+
+  // Show Password functionality for Sign Up
+  const signupPasswordInput = document.getElementById("signup-password");
+  const signupConfirmPasswordInput = document.getElementById("signup-confirm");
+  const showSignupPasswordCheckbox = document.getElementById(
+    "show-signup-password"
+  );
+
+  showSignupPasswordCheckbox.addEventListener("change", function () {
+    if (showSignupPasswordCheckbox.checked) {
+      signupPasswordInput.type = "text"; // Show password
+      signupConfirmPasswordInput.type = "text"; // Show confirm password
+    } else {
+      signupPasswordInput.type = "password"; // Hide password
+      signupConfirmPasswordInput.type = "password"; // Hide confirm password
+    }
+  });
+});
+
 // Handle signup form submission
 function handleSignup() {
   const username = document.getElementById("signup-username").value;
@@ -86,6 +116,9 @@ function handleSignup() {
   const confirmPassword = document.getElementById("signup-confirm").value; // Retrieve confirm password value
   const errorElement = document.getElementById("signup-error");
 
+  // Clear previous error messages
+  errorElement.textContent = "";
+
   // Basic validation
   if (!username || !email || !phone || !password || !confirmPassword) {
     errorElement.textContent = "Please fill in all fields";
@@ -94,6 +127,27 @@ function handleSignup() {
 
   if (password !== confirmPassword) {
     errorElement.textContent = "Passwords do not match";
+    return;
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    errorElement.textContent = "Please enter a valid email address.";
+    return;
+  }
+
+  // Validate phone number (digits only, 10-15 characters)
+  const phoneRegex = /^\d{10,15}$/;
+  if (!phoneRegex.test(phone)) {
+    errorElement.textContent =
+      "Please enter a valid phone number (10-15 digits).";
+    return;
+  }
+
+  // Validate password length
+  if (password.length < 6) {
+    errorElement.textContent = "Password must be at least 6 characters long.";
     return;
   }
 

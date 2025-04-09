@@ -209,8 +209,28 @@ document.addEventListener("DOMContentLoaded", function () {
         // Redirect to the search page
         window.location.href = "searchpage.html";
       } catch (error) {
-        console.error("Error fetching flight offers:", error);
-        alert("Failed to fetch flight offers. Please try again later.");
+            
+        // Display the error modal
+        const modal = document.getElementById("error-modal");
+        const modalMessage = document.getElementById("modal-message");
+        const closeModal = document.getElementById("close-modal");
+      
+        if (modal && modalMessage) {
+          modalMessage.textContent = "Failed to fetch flight offers. Please try again later.";
+          modal.style.display = "block";
+      
+          // Close the modal when the close button is clicked
+          closeModal.addEventListener("click", function () {
+            modal.style.display = "none";
+          });
+      
+          // Close the modal when clicking outside the modal content
+          window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+              modal.style.display = "none";
+            }
+          });
+        }
       } finally {
         // Hide the loading indicator
         loadingIndicator.classList.remove("visible");
@@ -218,7 +238,60 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+document.addEventListener("DOMContentLoaded", function () {
+  // Existing code...
 
+  const fromInput = document.getElementById("from");
+  const toInput = document.getElementById("to");
+
+  // Function to validate IATA code input
+  function validateIATACode(inputId) {
+    const inputElement = document.getElementById(inputId);
+    const errorMessage =
+      inputElement.nextElementSibling || document.createElement("div");
+
+    // Clear previous error message
+    errorMessage.className = "error-message";
+    errorMessage.textContent = "";
+    errorMessage.style.color = "red";
+    errorMessage.style.fontSize = "12px";
+    errorMessage.style.marginTop = "5px";
+
+    // Validate input
+    const value = inputElement.value.trim();
+    const isValid = /^[A-Z]{3}$/.test(value); // Regex for 3 uppercase letters
+
+    if (!isValid) {
+      errorMessage.textContent =
+        "Please enter a valid 3-letter airport IATA code (e.g., JFK, LAX).";
+      inputElement.parentElement.appendChild(errorMessage);
+    } else {
+      // Remove error message if valid
+      if (errorMessage.parentElement) {
+        errorMessage.parentElement.removeChild(errorMessage);
+      }
+    }
+
+    return isValid;
+  }
+
+  // Convert input to uppercase while typing and validate
+  [fromInput, toInput].forEach((input) => {
+    input.addEventListener("input", function () {
+      input.value = input.value.toUpperCase(); // Convert to uppercase
+      validateIATACode(input.id); // Validate input
+    });
+  });
+
+  // Validate on blur (when the user leaves the input field)
+  [fromInput, toInput].forEach((input) => {
+    input.addEventListener("blur", function () {
+      validateIATACode(input.id);
+    });
+  });
+
+  // Existing code...
+});
 // Function to validate inputs
 function validateInputs(
   origin,
