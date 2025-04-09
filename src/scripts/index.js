@@ -19,13 +19,25 @@ function decrementCount(id) {
   const countElement = document.getElementById(id);
   let count = parseInt(countElement.textContent);
 
+  const adultCountElement = document.getElementById("adult-count");
+  const childrenCountElement = document.getElementById("children-count");
+  const adultCount = parseInt(adultCountElement.textContent);
+  const childrenCount = parseInt(childrenCountElement.textContent);
   if (id === "adult-count") {
-    const childrenCount = parseInt(
-      document.getElementById("children-count").textContent
-    );
-
     // Prevent adults from going below 1 if children count is 0
     if (childrenCount === 0 && count <= 1) {
+      return; // Do nothing if the condition is met
+    }
+
+    // If adults are set to 0, ensure at least 1 child
+    if (count === 1 && childrenCount === 0) {
+      adultCountElement.textContent = 1;
+    }
+  }
+
+  if (id === "children-count") {
+    // Prevent children from going below 1 if adults count is 0
+    if (adultCount === 0 && count <= 1) {
       return; // Do nothing if the condition is met
     }
   }
