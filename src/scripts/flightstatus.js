@@ -109,3 +109,38 @@ document.addEventListener("DOMContentLoaded", function () {
     displayResults(flights);
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const carrierCodeInput = document.getElementById("carrier-code");
+  const flightNumberInput = document.getElementById("flight-number");
+  const errorElement = document.createElement("div");
+  errorElement.className = "error-message";
+
+  // Validate Carrier Code
+  carrierCodeInput.addEventListener("input", function () {
+    carrierCodeInput.value = carrierCodeInput.value.toUpperCase();
+    const value = carrierCodeInput.value.trim();
+    const isValid = /^[A-Z]{2,3}$/.test(value); // Regex: 2-3 uppercase letters
+
+    if (!isValid) {
+      errorElement.textContent =
+        "Carrier Code must be 2-3 uppercase letters (e.g., AA, TP).";
+      carrierCodeInput.parentElement.appendChild(errorElement);
+    } else {
+      errorElement.textContent = ""; // Clear error message if valid
+    }
+  });
+
+  // Validate Flight Number
+  flightNumberInput.addEventListener("input", function () {
+    const value = flightNumberInput.value.trim();
+    const isValid = /^\d+$/.test(value); // Regex: Numbers only
+
+    if (!isValid) {
+      errorElement.textContent = "Flight Number must be numeric (e.g., 487).";
+      flightNumberInput.parentElement.appendChild(errorElement);
+    } else {
+      errorElement.textContent = ""; // Clear error message if valid
+    }
+  });
+});

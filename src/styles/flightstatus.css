@@ -5,7 +5,8 @@ body {
   background: linear-gradient(#eeeeff, #cbc7ff);
   color: #333;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .header {
@@ -87,6 +88,8 @@ body {
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .status-form-group {
@@ -129,6 +132,8 @@ input {
   background: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .result-item {
@@ -137,4 +142,10 @@ input {
   background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
+}
+.error-message {
+  color: #f44336;
+  font-size: 14px;
+  margin-top: 5px;
+  min-height: 20px;
 }
