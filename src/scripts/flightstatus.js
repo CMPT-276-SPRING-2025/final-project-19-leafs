@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!isValid) {
       errorElement.textContent =
-        "Carrier Code must be 2-3 uppercase letters (e.g., AA, TP).";
+        "Carrier Code must be 2-3 uppercase letters (e.g., SQ, AA).";
       carrierCodeInput.parentElement.appendChild(errorElement);
     } else {
       errorElement.textContent = ""; // Clear error message if valid
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const isValid = /^\d+$/.test(value); // Regex: Numbers only
 
     if (!isValid) {
-      errorElement.textContent = "Flight Number must be numeric (e.g., 487).";
+      errorElement.textContent = "Flight Number must be numeric (e.g., 26, 100).";
       flightNumberInput.parentElement.appendChild(errorElement);
     } else {
       errorElement.textContent = ""; // Clear error message if valid
@@ -219,4 +219,12 @@ function createSupportedAirlinesSection() {
 // Initialize the supported airlines section when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
   createSupportedAirlinesSection();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const dateInput = document.getElementById("departure-date");
+
+  // Set the minimum date to today
+  const today = new Date().toISOString().split("T")[0];
+  dateInput.setAttribute("min", today);
 });
