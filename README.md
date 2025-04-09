@@ -39,6 +39,12 @@ You should see the following message in your terminal:
 ```
 Now, open `http://localhost:8888` in your browser to see the project running locally.
 
+NOTE: To run this website locally you will need your API keys in a `.env` file in the root of the folder in the following format.
+```bash
+GEMINI_API_KEY = 'your_api_key' 
+AMADEUS_API_KEY = 'your_api_key' 
+AMADEUS_API_SECRET = 'your_api_key'
+```
 ### 4. Access the Live Project
 To view the live deployed version of the project, use the URL provided by Netlify:
 
@@ -47,6 +53,6 @@ Live Project URL: [https://skyfare19.netlify.app](https://skyfare19.netlify.app)
 ### 5. Project Reports and Videos
 Here are the links to the project reports and demo videos:
 
-Project Report: 
+Project Report: [Project Report](https://docs.google.com/document/d/1UukaVmlxhA5dcF-R5nTm5YF_UAQU2LxJBi5Vd6qrIjI/edit?usp=sharing)
 
-Demo Video: 
+Demo Video: [Demo Video](https://drive.google.com/file/d/1Vbx9awV4h3e-kxNEJxtsItWk6L4zOGhZ/view)
